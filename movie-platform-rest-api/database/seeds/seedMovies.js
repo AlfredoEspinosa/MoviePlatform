@@ -1,4 +1,4 @@
-import database from "../../config/database.js";
+const database = require('../config/database.cjs');
 
 const sampleMovies = [
   {
