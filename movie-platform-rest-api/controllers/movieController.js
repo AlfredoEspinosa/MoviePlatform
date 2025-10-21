@@ -1,112 +1,238 @@
 const database = require('../config/database.cjs');
+const { errorHandler, notFound } = require('../middleware/errorMiddleware');
 
 //Helper function to parse main_actorsJSON
-const parseMainActors = (mainActors) =>{
-    try{
+const parseMainActors = (mainActors) => {
+    try {
         return mainActors ? mainActors.split(',').map(actor => actor.trim()) : [];
-    }catch{
+    } catch {
         return [];
     }
 };
 
+
 // @desc Get all movies with filtering (if any filter as query)
 // @route GET /api/movies
 
-const getAllMovies = async (req, res)=>{
+const getAllMovies = async (req, res) => {
     const db = await database.connect();
-        const {title, release_year, genere, country, directed_by, main_actors} = req.query;
-        const params = [];
-        let sql = `SELECT * FROM movies WHERE active_record=1`;
+    const { title, release_year, genere, country, directed_by, main_actors } = req.query;
+    const params = [];
+    let sql = `SELECT * FROM movies WHERE active_record=1`;
 
-        //Adding filters
-        if(title){
-            sql+=` AND titile LIKE ?`;
-            params.push(title);
+    //Adding filters
+    if (title) {
+        sql += ` AND titile LIKE ?`;
+        params.push(title);
+    }
+
+    if (release_year) {
+        sql += ` AND release_year=?`;
+        params.push(release_year);
+    }
+
+    if (genere) {
+        sql += ` AND genere=?`;
+        params.push(genere);
+    }
+
+    if (country) {
+        console.log(country);
+        sql += ` AND country=?`;
+        params.push(country);
+    }
+
+    if (directed_by) {
+        sql += ` AND directed_by LIKE ?`;
+        params.push(`%${directed_by}%`);
+    }
+
+    if (main_actors) {
+        sql += ` AND main_actors LIKE ?`;
+        params.push(`%${main_actors}%`);
+    }
+
+    db.all(sql, params, (err, rows) => {
+        if (err) {
+            return errorHandler;
         }
 
-        if(release_year){
-            sql+=` AND release_year=?`;
-            params.push(release_year);
-        }
-
-        if(genere){
-            sql+=` AND genere=?`;
-            params.push(genere);
-        }
-
-        if(country){
-            console.log(country);
-            sql+=` AND country=?`;
-            params.push(country);
-        }
-
-        if(directed_by){
-            sql+=` AND directed_by LIKE ?`;
-                params.push(`%${directed_by}%`);            
-        }
-
-        if(main_actors){
-            sql+=` AND main_actors LIKE ?`;
-            params.push(`%${main_actors}%`);
-        }
-        
-        db.all(sql,params, (err, rows)=>{
-            if(err){
-                return res.status(500).json({
-                    success: false,
-                    error: `Database Error: ${err}`
-                }); 
-            }
-
-        const movies = rows.map(row=>({
-            ... row,
-            main_actors: parseMainActors(row.main_actors)
+        const movies = rows.map(row => ({
+            ...row,
+            main_actors: row.main_actors
         }));
 
         return res.json({
-                success: true,
-                count: movies.length,
-                data: movies
+            success: true,
+            count: movies.length,
+            data: movies
         });
     });
 
     await database.disconnect();
 };
 
-const getMovie = async (req,res)=>{
+const getMovie = async (req, res) => {
     const movieId = parseInt(req.params.id);
-    const db =  await database.connect();
+    const db = await database.connect();
 
-    db.get(`SELECT * FROM movies WHERE id = ? AND active_record=1`,[movieId], (err, row)=>{
-            if(err){
-                return res.status(500).json({
-                    success: false,
-                    error: `Database error: ${err}`
-                });
-            }
-            
-            if(!row){
-                return res.status(404).json({
-                    success: false,
-                    error: `Movie with id: ${movieId} was not found`
-                })
-            }
+    db.get(`SELECT * FROM movies WHERE id = ? AND active_record=1`, [movieId], (err, row) => {
+        if (err) {
+            return errorHandler;
+        }
 
-            //Parse mainactors
-            const movie = {
-                ... row,
-                main_actors: parseMainActors(row.main_actors)
-            };
+        if (!row) {
+            return notFound;
+        }
 
-            res.json({
-                success:true,
-                data: movie
-            });
+        //Parse mainactors
+        const movie = {
+            ...row,
+        };
+
+        res.json({
+            success: true,
+            data: movie
         });
+    });
     await database.disconnect();
 };
 
+const updateMovie =  async (req,res)=>{
+    const movieId = req.params.id;
+    const {title, release_year, genere, synopsis, country, views, directed_by, main_actors} = req.body;
+    const db = await database.connect();
+
+    db.get(`SELECT * FROM movies WHERE id = ?`,[movieId],(err, row)=>{
+        if(err){
+            return errorHandler;
+        }
+        if(!row){
+            return notFound;
+        }
+
+        const updates = [];
+        const params = [];
+
+        if(title !== undefined){
+            updates.push('title = ?');
+            params.push(title);
+        }
+
+        if(release_year !== undefined){
+            updates.push('release_year = ?');
+            params.push(release_year);
+        }
+
+        if(genere !== undefined){
+            updates.push('genere = ?');
+            params.push(genere);
+        }
+
+        if(synopsis !== undefined){
+            updates.push('synopsis = ?');
+            params.push(synopsis);
+        }
+
+        if(country !== undefined){
+            updates.push('country = ?');
+            params.push(country);
+        }
+
+        if(views !== undefined){
+            updates.push('views = ?');
+            params.push(views);
+        }
+
+        if(directed_by !== undefined){
+            updates.push('directed_by = ?');
+            params.push(directed_by);
+        }
+
+        if(main_actors !== undefined){
+            console.log(`This is the value main_actors received from request: ${main_actors}`);
+            updates.push('main_actors = ?');
+            params.push(main_actors.join(", "));
+        }
+
+        updates.push('updated_at = CURRENT_TIMESTAMP');
+        params.push(movieId);
+
+        const sql = `UPDATE movies SET ${updates.join(', ')} WHERE id = ?`;
+        db.run(sql,params, function(err){
+            if(err){
+                return errorHandler;
+            }
+        });
+
+        db.get('SELECT * FROM movies WHERE id = ?',[movieId],(err, row)=>{
+            if(err){
+                return errorHandler;
+            }
+        });
+        
+        const movie = {
+            ...row,
+        };
+
+        res.json({
+            success: true,
+            data: movie
+        });
+    });
+};
+
+const createMovie = async (res, req)=>{
+    const {title, release_year, genere, synopsis, country, views, directed_by, main_actors } = req.body;
+    const db = await database.connect();
+
+    let sql = `INSERT INTO movies (title, release_year, genere, synopsis, country, views, directed_by, main_actors)
+               VALUES(?,?,?,?,?,?,?,?)`;
+
+    db.run(sql, [title, release_year, genere, synopsis, country, views, directed_by, main_actors.join(", ")], (err)=>{
+        if(err){
+            return errorHandler;
+        }
+    });
+
+    // verify insertion
+    db.get(`SELECT * FROM movies WHERE id = ? AND active_record=1`, [this.lastID], (err, row) => {
+        if (err) {
+            return errorHandler;
+        }
+
+        if (!row) {
+            return notFound;
+        }
+
+        //Parse mainactors
+        const movie = {
+            ...row,
+            main_actors: parseMainActors(row.main_actors)
+        };
+
+        res.json({
+            success: true,
+            data: movie
+        });
+    });
+    await database.disconnect();
+};
+
+
+const updateMoviePartially = async (res, req)=>{
+
+}
+const deleteMovie = async (res, req)=>{
+
+};
+
+
 module.exports = {
     getAllMovies,
-    getMovie
+    getMovie,
+    updateMovie,
+    createMovie,
+    updateMoviePartially,
+    deleteMovie
 }
