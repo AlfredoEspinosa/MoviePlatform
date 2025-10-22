@@ -1,4 +1,4 @@
-const database = require('../config/database.cjs');
+const database = require('../../config/database.cjs');
 
 const sampleMovies = [
   {

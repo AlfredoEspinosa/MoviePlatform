@@ -82,7 +82,7 @@ const getMovie = async (req, res) => {
         }
 
         if (!row) {
-            return notFound;
+            return notFound(req, res);
         }
 
         //Parse mainactors
@@ -182,49 +182,60 @@ const updateMovie =  async (req,res)=>{
     });
 };
 
-const createMovie = async (res, req)=>{
+const createMovie = async (req, res)=>{
     const {title, release_year, genere, synopsis, country, views, directed_by, main_actors } = req.body;
     const db = await database.connect();
 
-    let sql = `INSERT INTO movies (title, release_year, genere, synopsis, country, views, directed_by, main_actors)
-               VALUES(?,?,?,?,?,?,?,?)`;
+    const sql = db.prepare(
+        `INSERT INTO movies (title, release_year, genere, synopsis, country, views, directed_by, main_actors) VALUES(?,?,?,?,?,?,?,?)`
+    );
 
-    db.run(sql, [title, release_year, genere, synopsis, country, views, directed_by, main_actors.join(", ")], (err)=>{
+    sql.run([title, release_year, genere, synopsis, country, views, directed_by, main_actors.join(", ")], (err)=>{
         if(err){
-            return errorHandler;
+            return res.json({
+                success: false,
+                data: `Error: ${err}`
+            });
         }
-    });
-
-    // verify insertion
-    db.get(`SELECT * FROM movies WHERE id = ? AND active_record=1`, [this.lastID], (err, row) => {
-        if (err) {
-            return errorHandler;
-        }
-
-        if (!row) {
-            return notFound;
-        }
-
-        //Parse mainactors
-        const movie = {
-            ...row,
-            main_actors: parseMainActors(row.main_actors)
-        };
-
         res.json({
             success: true,
-            data: movie
+            data: `Movie inserted: ${JSON.stringify(req.body)}`
         });
     });
+    
+    sql.finalize();
     await database.disconnect();
+    return res;
 };
 
 
-const updateMoviePartially = async (res, req)=>{
+const updateMovieViews = async (req, res)=>{
+    const movieId = req.params.id;
 
-}
-const deleteMovie = async (res, req)=>{
+    const db = await database.connect();
+    let {views} = req.body;
 
+     const sql = `UPDATE movies SET views = ? WHERE id = ?`;
+
+    db.run(sql, [views, movieId], function(err) {
+        if (err) return errorHandler
+        res.json({ success: true, updated: this.changes });
+    });
+
+    return res;
+};
+
+const deleteMovie = async (req, res)=>{
+    const movieId = req.params.id;
+
+    const db = await database.connect();
+
+     const sql = `UPDATE movies SET active_record = ? WHERE id = ?`;
+
+    db.run(sql, [0, movieId], function(err) {
+        if (err) return errorHandler
+        res.json({ success: true, updated:  `Movie with Id: ${movieId} Deleted` });
+    });
 };
 
 
@@ -233,6 +244,6 @@ module.exports = {
     getMovie,
     updateMovie,
     createMovie,
-    updateMoviePartially,
+    updateMovieViews,
     deleteMovie
 }

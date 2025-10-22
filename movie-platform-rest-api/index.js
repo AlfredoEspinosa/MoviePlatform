@@ -5,6 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 //Middleware
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use('/api/movies', movieRoutes);
 
@@ -13,6 +14,11 @@ app.get('/', (req, res) => {
         message: 'Node.js Server 💻',
         endpoints: {
             'GET /api/movies': 'Get all movies (filters: title, release_year, genere, country, directed_by, main_actors)',
+            'GET /api/movies/:id': 'Get a single movie by Id',
+            'PUT /api/movies/:id': 'Update a movie record by Id',
+            'POST /api/movies' : 'Create a movie record',
+            'PATCH /api/movies/:id': 'Update partially as patch by Id',
+            'DELETE /api/movies/:id': 'Delete a movie record by Id'
         }
     });
 });
