@@ -25,6 +25,7 @@
 </head>
 <body>
   <div id="movie-details">
+      <h1>🎬 Movie Platform</h1>
     <h2>Select a movie to view details</h2>
     <div id="details-content"></div>
   </div>
@@ -35,6 +36,8 @@
   </select>
   <button id="updateMovie" onclick="updateMovie()" disabled="true">Update Movie Data (Put Request)</button>
   <button id="updateViews" onclick="updateViews()" disabled="true">Increase Views (Patch Request)</button>
+  <button id="delete" onclick="deleteMovie()" disabled="true">Delete</button>
+
 
 
 
@@ -61,7 +64,7 @@
         detailsContent.innerHTML = '';
         document.getElementById('updateMovie').disabled= true;
         document.getElementById('updateViews').disabled= true;
-
+        document.getElementById('delete').disabled= true;
         return;
       }
       try {
@@ -78,11 +81,13 @@
           <p><strong>Main Actors/Actresses:</strong>  <input type="text" id="main_actors" size="80" placeholder="${movie.main_actors}"/>  </p>
           <p><strong>Synopsis:</strong>  <textarea id="synopsis" placeholder="${movie.synopsis}" rows="5" cols="40" maxlength="500"></textarea> </p>
 
-          <p><strong><h5>Total Views: ${movie.views}</h5></strong></p>
+          <p id="pviews" style="font-size: 20px;"><strong>Total Views: ${movie.views}</strong></p>
+          <input type="hidden" id="views" value=${movie.views}>
         `;
 
         document.getElementById('updateMovie').disabled= false;
         document.getElementById('updateViews').disabled= false;
+        document.getElementById('delete').disabled= false;
 
       } catch (error) {
         console.error('Error fetching movie details:', error);
@@ -106,12 +111,36 @@
       })
       .catch(error=>{
         console.log(error);
-          window.alert(`Error while updating: ${error} \n ${JSON.stringify(error.response.data)}`);
+          window.alert(`Error while updating movie data: ${error} \n ${JSON.stringify(error.response.data)}`);
       });
     }
 
     async function updateViews(){
-      console.log('updating views');
+      const updated_views = parseInt(document.getElementById('views').value)+parseInt(Math.floor(Math.random() * 1000));
+
+      axios.patch(`${moviesAPI}${movie.id}`,{views: `${updated_views}`})
+      .then(response=>{
+        document.getElementById('pviews').innerHTML = `<strong>Total Views: ${updated_views}</strong>`
+        document.getElementById('views').value = updated_views;
+        window.alert(`Number of views incresed to: ${updated_views}`);
+      })
+      .catch(error=>{
+        window.alert(`Error while updating movie views: ${error} \n ${JSON.stringify(error.response.data)}`);
+      })
+    }
+
+    async function deleteMovie(){
+      if(window.confirm("Are you sure you want to delete this movie?")){
+        axios.delete(`${moviesAPI}${movie.id}`)
+        .then(response=>{
+          window.alert(`${movie.title} was succesfully deleted`);
+          window.location.reload();
+        })
+        .catch(error=>{
+          window.alert(`Error while updating movie views: ${error} \n ${JSON.stringify(error.response.data)}`);
+        })
+
+      }
     }
 
      async function loadDropDown(){

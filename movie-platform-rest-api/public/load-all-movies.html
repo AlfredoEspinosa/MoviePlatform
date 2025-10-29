@@ -1,81 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Movie Platform</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 20px;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin-bottom: 20px;
-      cursor: pointer;
-    }
-    .movie-card {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      padding: 15px;
-      margin-bottom: 15px;
-    }
-    .movie-card h2 {
-      margin: 0;
-      font-size: 20px;
-    }
-    .movie-card p {
-      margin: 5px 0;
-    }
-    .label {
-      font-weight: bold;
-    }
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-</head>
-<body>
-
-  <button onclick="fetchMovies()">Load All Movies</button>
-  <div id="movie-container"></div>
-
-  <script>
-
-    async function fetchMovies() {
-      try {
-        const result = await axios.get('http://localhost:3000/api/movies');
-        console.log('Movies:', result.data.data);
-
-
-        const container = document.getElementById('movie-container');
-        container.innerHTML = '';
-
-        result.data.data.forEach(movie => {
-          const card = document.createElement('div');
-          card.className = 'movie-card';
-          card.innerHTML = `
-            <h2>${movie.title} (${movie.release_year})</h2>
-            <p><span class="label">Genre:</span> ${movie.genere}</p>
-            <p><span class="label">Country:</span> ${movie.country}</p>
-            <p><span class="label">Views:</span> ${movie.views.toLocaleString()}</p>
-            <p><span class="label">Directed by:</span> ${movie.directed_by}</p>
-            <p><span class="label">Main Actors/Actresses:</span> ${movie.main_actors}</p>
-            <p><span class="label">Synopsis:</span> ${movie.synopsis}</p>
-            <p><span class="label">Created At:</span> ${movie.created_at}</p>
-            <p><span class="label">Updated At:</span> ${movie.updated_at}</p>
-            <p><span class="label">Active:</span> ${movie.active_record === 1 ? 'Yes' : 'No'}</p>
-          `;
-          container.appendChild(card);
-        });
-      } catch (err) {
-        alert('Failed to load movies: ' + err.message);
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Platform</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        padding: 20px;
       }
-    }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        margin-bottom: 20px;
+        cursor: pointer;
+      }
+      .movie-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        margin-bottom: 15px;
+      }
+      .movie-card h2 {
+        margin: 0;
+        font-size: 20px;
+      }
+      .movie-card p {
+        margin: 5px 0;
+      }
+      .label {
+        font-weight: bold;
+      }
+      form {
+        margin-bottom: 30px;
+      }
+      input,
+      select {
+        padding: 8px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <h1>🎬 Movie Platform</h1>
 
-    window.fetchMovies = fetchMovies;
-  </script>
+    <input type="text" id="title" placeholder="Title"  />
+    <input type="text" id="release_year" placeholder="Release Year" />
+    <select id="genere">
+      <option value="">-- Select Genere --</option>
+      <option>Drama</option>
+      <option>Action</option>
+      <option>Comedy</option>
+      <option>Fantasy</option>
+      <option>Romance</option>
+      <option>Horror</option>
+      <option>Western</option>
+      <option>Science fiction</option>
+      <option>Adventure</option>
+      <option>Documentary</option>
+      <option>Animation</option>
+      <option>Invalid Genere</option>
+    </select>
+    <input type="text" id="country" placeholder="country" />
+    <input type="text" id="synopsis" placeholder="Synopsis" />
+    <input type="text" id="directed_by" placeholder="Directed By" />
+    <input type="text"id="main_actors" placeholder="Main Actors" />
 
-</body>
+    <!-- Action Buttons -->
+    </br>
+    <button onclick="fetchMovies()">🔍 Search Movies</button>
+    <button onclick="createMovie()">📝 Create New Movie</button>
+
+    <!-- Movie Display -->
+    <div id="movie-container"></div>
+
+    <script>
+      const moviesAPI = 'http://localhost:3000/api/movies';
+
+      async function fetchMovies() {
+        try {
+          const queryString = getQueryString();
+          const container = document.getElementById("movie-container");
+
+          // GET request using Axios
+          axios.get(`${moviesAPI}${queryString}`)
+          .then(response=>{
+            console.log(response);
+            container.innerHTML = "";
+            response.data.data.forEach((movie) => {
+              const card = document.createElement("div");
+              card.className = "movie-card";
+              card.innerHTML = `
+              <h2>${movie.title} (${movie.release_year})</h2>
+              <p><span class="label">Genre:</span> ${movie.genere}</p>
+              <p><span class="label">Country:</span> ${movie.country}</p>
+              <p><span class="label">Views:</span> ${movie.views.toLocaleString()}</p>
+              <p><span class="label">Directed by:</span> ${movie.directed_by}</p>
+              <p><span class="label">Main Actors/Actresses:</span> ${
+                movie.main_actors
+              }</p>
+              <p><span class="label">Synopsis:</span> ${movie.synopsis}</p>
+              <p><span class="label">Created At:</span> ${movie.created_at}</p>
+              <p><span class="label">Updated At:</span> ${movie.updated_at}</p>
+              <p><span class="label">Active:</span> ${
+                movie.active_record === 1 ? "Yes" : "No"
+              }</p>
+            `;
+            container.appendChild(card);
+          });
+          })
+          .catch(error=>{
+            if(error.response.status === 404){
+              const card = document.createElement("div");
+              card.className = "movie-card";
+              card.innerHTML = `<p><span class="label">${error.response.data.error}span></br></br> ${moviesAPI}${queryString}</</p>`
+              container.appendChild(card);
+            }
+          });
+        } catch (err) {
+          alert("Failed to load movies: " + err.message);
+        }
+      }
+
+      //HELPER FUNCTIONS
+
+      function getQueryString(){
+        let stringQueryParams='';
+        const queryFilters = ['title', 'release_year', 'genere','country', 'synopsis', 'directed_by', 'main_actors'];
+
+        queryFilters.forEach(queryFilter =>{
+          const input = document.getElementById(queryFilter);
+
+          if(input.value){
+            if(stringQueryParams.length === 0){
+              stringQueryParams = stringQueryParams+'?'+queryFilter+'='+input.value;
+            }else{
+              stringQueryParams = stringQueryParams+'&'+queryFilter+'='+input.value;
+            }
+          }
+        });
+
+        const titleVal = document.getElementById('title').value;
+
+        console.log(stringQueryParams);
+        return stringQueryParams;
+      }
+
+    </script>
+  </body>
 </html>

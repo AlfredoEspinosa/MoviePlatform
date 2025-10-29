@@ -17,6 +17,14 @@ function validateMovieRecord(req, res, next){
     errors.push('Release year cannot be greater than current year')
   }
 
+   if(!country || country.trim().length === 0){
+    errors.push('Country is required');
+  }
+
+   if(!views || views.trim().length === 0){
+    errors.push('Views is required');
+  }
+
   if(!genere || genere.trim().length === 0){
     errors.push('Genere is required');
   }else if(!validateGenere(genere, valid_generes)){

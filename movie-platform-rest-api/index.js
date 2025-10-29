@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/test-api-requests', (req, res) => {
+app.get('/load-all-movies', (req, res) => {
       res.sendFile(path.join(__dirname, 'public', 'load-all-movies.html'));
     });
 

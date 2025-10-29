@@ -5,7 +5,7 @@ const{getAllMovies, getMovie, getDropDownMovies,updateMovie, createMovie, update
 
 router.route('/')
 .get(getAllMovies)
-.post(createMovie);
+.post(validateMovieRecord, createMovie);
 
 router.route('/dropdown-movies')
 .get(getDropDownMovies);

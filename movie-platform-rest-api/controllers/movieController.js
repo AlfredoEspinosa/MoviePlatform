@@ -23,7 +23,7 @@ const getAllMovies = async (req, res) => {
 
     //Adding filters
     if (title) {
-        sql += ` AND titile LIKE ?`;
+        sql += ` AND title LIKE ?`;
         params.push(title);
     }
 
@@ -62,6 +62,13 @@ const getAllMovies = async (req, res) => {
             ...row,
             main_actors: row.main_actors
         }));
+
+        if(movies.length <= 0){
+          return res.status(404).json({
+            success: false,
+            error: "There are  no records matching search criteria"
+          });
+        }
 
         return res.json({
             success: true,
