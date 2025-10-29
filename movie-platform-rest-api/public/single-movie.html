@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movie Selector</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+    }
+    #movie-details {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+    select {
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div id="movie-details">
+    <h2>Select a movie to view details</h2>
+    <div id="details-content"></div>
+  </div>
+
+  <label for="movie-select">Choose a movie:</label>
+  <select id="movie-select">
+    <option value="">-- Select a movie --</option>
+  </select>
+  <button id="updateMovie" onclick="updateMovie()" disabled="true">Update Movie Data (Put Request)</button>
+  <button id="updateViews" onclick="updateViews()" disabled="true">Increase Views (Patch Request)</button>
+
+
+
+  <script>
+    const dropdownUrl = 'http://localhost:3000/api/movies/dropdown-movies';
+    const moviesAPI = 'http://localhost:3000/api/movies/';
+    const editablefields = ['title', 'release_year', 'country', 'genere', 'directed_by', 'main_actors', 'synopsis']
+
+
+    const movieSelect = document.getElementById('movie-select');
+    const detailsContent = document.getElementById('details-content');
+    let movie =  null;
+
+
+    // Populate dropdown on page load
+    window.addEventListener('DOMContentLoaded', async () => {
+      loadDropDown();
+    });
+
+    // Fetch and display movie details on selection
+    movieSelect.addEventListener('change', async () => {
+      const movieId = movieSelect.value;
+      if (!movieId) {
+        detailsContent.innerHTML = '';
+        document.getElementById('updateMovie').disabled= true;
+        document.getElementById('updateViews').disabled= true;
+
+        return;
+      }
+      try {
+        const response = await axios.get(`${moviesAPI}${movieId}`);
+        movie =  response.data.data;
+
+        detailsContent.innerHTML = `
+          <h3>${movie.title}</h3>
+          <p><strong>Title:</strong>  <input type="text" id="title" placeholder="${movie.title}"/>  </p>
+          <p><strong>Release Year:</strong>  <input type="text" id="release_year" placeholder="${movie.release_year}"/>  </p>
+          <p><strong>Country:</strong>  <input type="text" id="country" placeholder="${movie.country}"/>  </p>
+          <p><strong>Genere:</strong>  <input type="text" id="genere" placeholder="${movie.genere}"/> </p>
+          <p><strong>Directed by:</strong>  <input type="text" id="directed_by" placeholder="${movie.directed_by}"/>  </p>
+          <p><strong>Main Actors/Actresses:</strong>  <input type="text" id="main_actors" size="80" placeholder="${movie.main_actors}"/>  </p>
+          <p><strong>Synopsis:</strong>  <textarea id="synopsis" placeholder="${movie.synopsis}" rows="5" cols="40" maxlength="500"></textarea> </p>
+
+          <p><strong><h5>Total Views: ${movie.views}</h5></strong></p>
+        `;
+
+        document.getElementById('updateMovie').disabled= false;
+        document.getElementById('updateViews').disabled= false;
+
+      } catch (error) {
+        console.error('Error fetching movie details:', error);
+        detailsContent.innerHTML = '<p style="color:red;">Failed to load movie details.</p>';
+      }
+    });
+    
+    async function updateMovie() {
+      editablefields.forEach(field=>{
+        if(document.getElementById(`${field}`).value){
+              movie[`${field}`] = document.getElementById(`${field}`).value;
+        }
+      });
+      console.log(movie['main_actors']);
+      movie['main_actors'] = Array.isArray(movie['main_actors'])? movie['main_actors'] : movie.main_actors.split(','); // convert string to array
+      axios.put(`${moviesAPI}${movie.id}`,movie)
+      .then(response=>{
+        let dropdown = document.getElementById('movie-select');
+        dropdown.options[dropdown.selectedIndex].text = movie.title;
+        window.confirm("Movie updated succesfully");
+      })
+      .catch(error=>{
+        console.log(error);
+          window.alert(`Error while updating: ${error} \n ${JSON.stringify(error.response.data)}`);
+      });
+    }
+
+    async function updateViews(){
+      console.log('updating views');
+    }
+
+     async function loadDropDown(){
+      try {
+        const result = await axios.get(dropdownUrl);
+
+        result.data.data.forEach(movie => {
+          const option = document.createElement('option');
+          option.value = movie.id;
+          option.textContent = movie.title;
+          movieSelect.appendChild(option);
+        });
+      } catch (error) {
+        console.error('Error fetching movie list:', error);
+      }
+    }
+  </script>
+</body>
+</html>

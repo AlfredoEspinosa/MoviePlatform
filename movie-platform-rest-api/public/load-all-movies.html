@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Movie Platform</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+    .movie-card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    .movie-card h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .movie-card p {
+      margin: 5px 0;
+    }
+    .label {
+      font-weight: bold;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+  <button onclick="fetchMovies()">Load All Movies</button>
+  <div id="movie-container"></div>
+
+  <script>
+
+    async function fetchMovies() {
+      try {
+        const result = await axios.get('http://localhost:3000/api/movies');
+        console.log('Movies:', result.data.data);
+
+
+        const container = document.getElementById('movie-container');
+        container.innerHTML = '';
+
+        result.data.data.forEach(movie => {
+          const card = document.createElement('div');
+          card.className = 'movie-card';
+          card.innerHTML = `
+            <h2>${movie.title} (${movie.release_year})</h2>
+            <p><span class="label">Genre:</span> ${movie.genere}</p>
+            <p><span class="label">Country:</span> ${movie.country}</p>
+            <p><span class="label">Views:</span> ${movie.views.toLocaleString()}</p>
+            <p><span class="label">Directed by:</span> ${movie.directed_by}</p>
+            <p><span class="label">Main Actors/Actresses:</span> ${movie.main_actors}</p>
+            <p><span class="label">Synopsis:</span> ${movie.synopsis}</p>
+            <p><span class="label">Created At:</span> ${movie.created_at}</p>
+            <p><span class="label">Updated At:</span> ${movie.updated_at}</p>
+            <p><span class="label">Active:</span> ${movie.active_record === 1 ? 'Yes' : 'No'}</p>
+          `;
+          container.appendChild(card);
+        });
+      } catch (err) {
+        alert('Failed to load movies: ' + err.message);
+      }
+    }
+
+    window.fetchMovies = fetchMovies;
+  </script>
+
+</body>
+</html>
