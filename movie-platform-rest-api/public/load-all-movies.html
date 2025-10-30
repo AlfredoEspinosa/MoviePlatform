@@ -118,12 +118,42 @@
             if(error.response.status === 404){
               const card = document.createElement("div");
               card.className = "movie-card";
-              card.innerHTML = `<p><span class="label">${error.response.data.error}span></br></br> ${moviesAPI}${queryString}</</p>`
+              card.innerHTML = `<p><span class="label">${error.response.data.error}</span></br></br> ${moviesAPI}${queryString}</</p>`
+              container.innerHTML = ""; // clear previous results if any exists
               container.appendChild(card);
+            }else{
+              throw error;
             }
           });
         } catch (err) {
           alert("Failed to load movies: " + err.message);
+        }
+      }
+
+      async function createMovie(){
+        try{
+          const random = Math.floor(Math.random() * 100)+1;
+          fetch('movies-list-post-requests.json')
+          .then(response => response.json())
+          .then(data=>{
+            const newMovie = data[random];
+            console.log(`This is the new Movie: ${newMovie}`)
+            axios.post(`${moviesAPI}`,newMovie)
+            .then(response=>{
+              console.log(response);
+              alert(`New Movie created succesfully : \n\n ${response.data.data}`);
+            })
+            .catch(error=>{
+              console.log(`Error Creating new movie record: ${error}`);
+              throw error;
+            })
+          })
+          .catch(error=>{
+            console.log(`Error loading movie-list-post-requests.json: ${error}`);
+            throw error;
+          });
+        }catch(err){
+          alert("Failed to create movies: " + err.message);
         }
       }
 
