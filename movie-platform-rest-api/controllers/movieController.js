@@ -1,16 +1,5 @@
-const { json } = require('express');
 const database = require('../config/database.cjs');
 const { errorHandler, notFound } = require('../middleware/errorMiddleware');
-
-//Helper function to parse main_actorsJSON
-const parseMainActors = (mainActors) => {
-    try {
-        return mainActors ? mainActors.split(',').map(actor => actor.trim()) : [];
-    } catch {
-        return [];
-    }
-};
-
 
 // @desc Get all movies with filtering (if any filter as query)
 // @route GET /api/movies
@@ -24,7 +13,7 @@ const getAllMovies = async (req, res) => {
     //Adding filters
     if (title) {
         sql += ` AND title LIKE ?`;
-        params.push(title);
+        params.push(`%${title}%`);
     }
 
     if (release_year) {
