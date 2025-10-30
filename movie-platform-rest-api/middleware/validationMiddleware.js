@@ -21,7 +21,7 @@ function validateMovieRecord(req, res, next){
     errors.push('Country is required');
   }
 
-   if(!views || views.trim().length === 0){
+   if(!views || views.toString().trim().length === 0){
     errors.push('Views is required');
   }
 
