@@ -1,0 +1,1062 @@
+[
+  {
+    "title": "The Last Sunset",
+    "release_year": 2022,
+    "genere": "Western",
+    "synopsis": "An aging outlaw returns to his hometown for one final confrontation with his former partner.",
+    "country": "USA",
+    "views": 850000,
+    "directed_by": "James McCullough",
+    "main_actors": ["Sam Elliott", "Thomasin McKenzie"]
+  },
+  {
+    "title": "Midnight in Paris",
+    "release_year": 2024,
+    "genere": "Romance",
+    "synopsis": "A young couple's relationship is tested during a magical, life-changing night in the city of love.",
+    "country": "France",
+    "views": 2100000,
+    "directed_by": "Sophie Laurent",
+    "main_actors": ["Léa Seydoux", "Lucas Bravo"]
+  },
+  {
+    "title": "The Howling Forest",
+    "release_year": 2021,
+    "genere": "Horror",
+    "synopsis": "A group of campers discover that the local legends about a creature in the woods are terrifyingly real.",
+    "country": "Canada",
+    "views": 3200000,
+    "directed_by": "David Chen",
+    "main_actors": ["Katherine Langford", "Daniel Doheny"]
+  },
+  {
+    "title": "Operation Red Sand",
+    "release_year": 2023,
+    "genere": "Action",
+    "synopsis": "An elite special forces team is sent to infiltrate a desert fortress to prevent a global catastrophe.",
+    "country": "UK",
+    "views": 4500000,
+    "directed_by": "Michael Bay",
+    "main_actors": ["Idris Elba", "Florence Pugh"]
+  },
+  {
+    "title": "The Unseen Thread",
+    "release_year": 2025,
+    "genere": "Fantasy",
+    "synopsis": "A young seamstress discovers she can weave fate itself with her magical loom.",
+    "country": "New Zealand",
+    "views": 950000,
+    "directed_by": "Jane Campion",
+    "main_actors": ["Anya Taylor-Joy", "George MacKay"]
+  },
+  {
+    "title": "Laughing Matters",
+    "release_year": 2022,
+    "genere": "Comedy",
+    "synopsis": "A stand-up comedian's life turns upside down when his most embarrassing childhood story becomes a viral sensation.",
+    "country": "USA",
+    "views": 3800000,
+    "directed_by": "Judd Apatow",
+    "main_actors": ["Kumail Nanjiani", "Issa Rae"]
+  },
+  {
+    "title": "The Silent Ocean",
+    "release_year": 2023,
+    "genere": "Drama",
+    "synopsis": "A grieving fisherman forms an unlikely bond with a marine biologist while battling a corporate polluter.",
+    "country": "Australia",
+    "views": 1200000,
+    "directed_by": "Cate Shortland",
+    "main_actors": ["Joaquin Phoenix", "Tilda Swinton"]
+  },
+  {
+    "title": "Cosmic Drifters",
+    "release_year": 2024,
+    "genere": "Science fiction",
+    "synopsis": "The lone crew member of a generation ship must awaken from cryo-sleep early to deal with a critical systems failure.",
+    "country": "USA",
+    "views": 2750000,
+    "directed_by": "Denis Villeneuve",
+    "main_actors": ["John David Washington", "Rebecca Ferguson"]
+  },
+  {
+    "title": "The Lost Temple of Amazon",
+    "release_year": 2023,
+    "genere": "Adventure",
+    "synopsis": "An archaeologist and her ex-mercenary guide race against time to find a mythical city before it falls into the wrong hands.",
+    "country": "Brazil",
+    "views": 4100000,
+    "directed_by": "Fernando Meirelles",
+    "main_actors": ["Morena Baccarin", "Wagner Moura"]
+  },
+  {
+    "title": "Vanishing Ice",
+    "release_year": 2022,
+    "genere": "Documentary",
+    "synopsis": "A stark and beautiful look at the lives of communities and ecosystems on the front lines of climate change in the Arctic.",
+    "country": "Norway",
+    "views": 780000,
+    "directed_by": "Margreth Olin",
+    "main_actors": []
+  },
+  {
+    "title": "Buzzy's Big Adventure",
+    "release_year": 2024,
+    "genere": "Animation",
+    "synopsis": "A determined little bee embarks on a journey across the city to save his hive from being relocated.",
+    "country": "Japan",
+    "views": 5200000,
+    "directed_by": "Makoto Shinkai",
+    "main_actors": ["Kento Yamazaki", "Kanna Hashimoto"]
+  },
+  {
+    "title": "The Forgotten Melody",
+    "release_year": 2023,
+    "genere": "Drama",
+    "synopsis": "A former piano prodigy rediscovers her passion for music while teaching a troubled child.",
+    "country": "South Korea",
+    "views": 1850000,
+    "directed_by": "Lee Jun-ik",
+    "main_actors": ["Youn Yuh-jung", "Park Hae-soo"]
+  },
+  {
+    "title": "Neon Samurai",
+    "release_year": 2025,
+    "genere": "Action",
+    "synopsis": "In a cyberpunk Tokyo, a ronin for hire must protect a valuable data chip from a powerful megacorporation.",
+    "country": "Japan",
+    "views": 3100000,
+    "directed_by": "Shin'ichirō Watanabe",
+    "main_actors": ["Hiroyuki Sanada", "Rinko Kikuchi"]
+  },
+  {
+    "title": "Second Chance, First Love",
+    "release_year": 2024,
+    "genere": "Romance",
+    "synopsis": "High school sweethearts get a second chance at love when they are paired together for a friend's wedding 15 years later.",
+    "country": "USA",
+    "views": 2950000,
+    "directed_by": "Trish Sie",
+    "main_actors": ["Glen Powell", "Zoey Deutch"]
+  },
+  {
+    "title": "The Whispering Mannequin",
+    "release_year": 2023,
+    "genere": "Horror",
+    "synopsis": "A vintage store owner realizes the mannequins in her shop are vessels for spirits from a forgotten asylum.",
+    "country": "UK",
+    "views": 4400000,
+    "directed_by": "Coralie Fargeat",
+    "main_actors": ["Jodie Comer", "Oliver Jackson-Cohen"]
+  },
+  {
+    "title": "Rust and Bone",
+    "release_year": 2022,
+    "genere": "Western",
+    "synopsis": "A lone bounty hunter with a metal arm tracks his final target through the desolate badlands.",
+    "country": "USA",
+    "views": 1650000,
+    "directed_by": "Chloé Zhao",
+    "main_actors": ["Ben Foster", "Moses Ingram"]
+  },
+  {
+    "title": "The Algorithm of Love",
+    "release_year": 2025,
+    "genere": "Science fiction",
+    "synopsis": "A programmer falls in love with the perfect AI companion, only to discover her consciousness is based on a real, missing person.",
+    "country": "Germany",
+    "views": 1980000,
+    "directed_by": "Tom Tykwer",
+    "main_actors": ["Daniel Brühl", "Sandra Hüller"]
+  },
+  {
+    "title": "Island of the Fire Giants",
+    "release_year": 2024,
+    "genere": "Fantasy",
+    "synopsis": "A cartographer's map leads a crew of explorers to a hidden island inhabited by ancient, elemental beings.",
+    "country": "Iceland",
+    "views": 2250000,
+    "directed_by": "Baltasar Kormákur",
+    "main_actors": ["Alexander Skarsgård", "Anya Bergman"]
+  },
+  {
+    "title": "Dad Jokes",
+    "release_year": 2023,
+    "genere": "Comedy",
+    "synopsis": "A man's life is turned into a sitcom after he accidentally becomes the source of the world's most powerful dad jokes.",
+    "country": "USA",
+    "views": 5100000,
+    "directed_by": "Jake Szymanski",
+    "main_actors": ["Paul Rudd", "Awkwafina"]
+  },
+  {
+    "title": "The Deep Blue Yonder",
+    "release_year": 2022,
+    "genere": "Adventure",
+    "synopsis": "A family embarks on a perilous sailing voyage across the Pacific to start a new life.",
+    "country": "New Zealand",
+    "views": 1350000,
+    "directed_by": "Taika Waititi",
+    "main_actors": ["Sam Neill", "Thomasin McKenzie"]
+  },
+  {
+    "title": "The Architect of Dreams",
+    "release_year": 2025,
+    "genere": "Fantasy",
+    "synopsis": "A lonely architect discovers he can design and enter people's dreams, but a nightmare entity begins to escape into the real world.",
+    "country": "Spain",
+    "views": 1750000,
+    "directed_by": "J.A. Bayona",
+    "main_actors": ["Javier Bardem", "Mario Casas"]
+  },
+  {
+    "title": "Crimson River",
+    "release_year": 2023,
+    "genere": "Horror",
+    "synopsis": "A vacation to a remote fishing lodge turns into a fight for survival against a family of inbred cannibals.",
+    "country": "USA",
+    "views": 3900000,
+    "directed_by": "Ari Aster",
+    "main_actors": ["Florence Pugh", "Bill Skarsgård"]
+  },
+  {
+    "title": "The Last Goodbye",
+    "release_year": 2024,
+    "genere": "Drama",
+    "synopsis": "Two estranged siblings are forced to reunite and clean out their childhood home after their mother's death.",
+    "country": "Ireland",
+    "views": 2200000,
+    "directed_by": "John Crowley",
+    "main_actors": ["Saoirse Ronan", "Paul Mescal"]
+  },
+  {
+    "title": "Skyfall Out",
+    "release_year": 2025,
+    "genere": "Action",
+    "synopsis": "A disgraced air force pilot must land a commercial airliner after a terrorist attack incapacitates the crew.",
+    "country": "USA",
+    "views": 4850000,
+    "directed_by": "Kathryn Bigelow",
+    "main_actors": ["Tom Hardy", "Danai Gurira"]
+  },
+  {
+    "title": "Starlight Serenade",
+    "release_year": 2024,
+    "genere": "Romance",
+    "synopsis": "A famous pop star, tired of the limelight, falls for a small-town bookseller while hiding out from the press.",
+    "country": "UK",
+    "views": 2650000,
+    "directed_by": "Roger Michell",
+    "main_actors": ["Emma Corrin", "Josh O'Connor"]
+  },
+  {
+    "title": "The Secret Life of Pets 2: Jungle Boogie",
+    "release_year": 2023,
+    "genere": "Animation",
+    "synopsis": "Max and the gang get accidentally shipped to the Amazon rainforest and must find their way back home.",
+    "country": "USA",
+    "views": 6200000,
+    "directed_by": "Chris Renaud",
+    "main_actors": ["Kevin Hart", "Tiffany Haddish"]
+  },
+  {
+    "title": "Dust and Diamonds",
+    "release_year": 2022,
+    "genere": "Western",
+    "synopsis": "A mysterious woman arrives in a mining town, claiming to be the heir to a rich diamond mine, stirring up trouble with the local baron.",
+    "country": "USA",
+    "views": 1100000,
+    "directed_by": "Kelly Reichardt",
+    "main_actors": ["Frances McDormand", "Timothée Chalamet"]
+  },
+  {
+    "title": "The Glass Hotel",
+    "release_year": 2025,
+    "genere": "Drama",
+    "synopsis": "The intertwined lives of the guests and staff at a luxurious hotel are revealed over one fateful New Year's Eve.",
+    "country": "France",
+    "views": 1550000,
+    "directed_by": "Céline Sciamma",
+    "main_actors": ["Adèle Exarchopoulos", "Vincent Lacoste"]
+  },
+  {
+    "title": "Paradox Point",
+    "release_year": 2024,
+    "genere": "Science fiction",
+    "synopsis": "A team of scientists testing a time machine find themselves trapped in a loop, reliving the same disastrous hour.",
+    "country": "Canada",
+    "views": 2450000,
+    "directed_by": "Vincenzo Natali",
+    "main_actors": ["Rachel McAdams", "Daniel Radcliffe"]
+  },
+  {
+    "title": "The Luchador's Mask",
+    "release_year": 2023,
+    "genere": "Adventure",
+    "synopsis": "A young man discovers his late grandfather's luchador mask holds the power of an ancient Aztec god.",
+    "country": "Mexico",
+    "views": 3300000,
+    "directed_by": "Guillermo del Toro",
+    "main_actors": ["Diego Luna", "Salma Hayek"]
+  },
+  {
+    "title": "My Life as a Zucchini: The Later Years",
+    "release_year": 2025,
+    "genere": "Animation",
+    "synopsis": "A stop-motion film following the now-teenage characters from the original as they navigate high school and new friendships.",
+    "country": "France",
+    "views": 890000,
+    "directed_by": "Claude Barras",
+    "main_actors": ["Gaspard Schlatter", "Sixtine Murat"]
+  },
+  {
+    "title": "The Stand-Up Standoff",
+    "release_year": 2022,
+    "genere": "Comedy",
+    "synopsis": "Two rival stand-up comedians are forced to go on a cross-country road trip together after their flights are canceled.",
+    "country": "USA",
+    "views": 4200000,
+    "directed_by": "Erica Dunton",
+    "main_actors": ["John Mulaney", "Ali Wong"]
+  },
+  {
+    "title": "The Beast of Bodmin Moor",
+    "release_year": 2023,
+    "genere": "Horror",
+    "synopsis": "A cryptozoologist and a local farmer team up to hunt a legendary creature that is terrorizing the English countryside.",
+    "country": "UK",
+    "views": 2850000,
+    "directed_by": "Ben Wheatley",
+    "main_actors": ["Matt Smith", "Jenna Coleman"]
+  },
+  {
+    "title": "Echoes of a Empire",
+    "release_year": 2024,
+    "genere": "Documentary",
+    "synopsis": "An exploration of the rise and fall of the Mali Empire, using new archaeological findings and historical texts.",
+    "country": "Mali",
+    "views": 650000,
+    "directed_by": "Souleymane Cissé",
+    "main_actors": []
+  },
+  {
+    "title": "The Ronin's Debt",
+    "release_year": 2025,
+    "genere": "Action",
+    "synopsis": "A masterless samurai is tasked with protecting a village from a ruthless warlord to repay a life debt.",
+    "country": "Japan",
+    "views": 1950000,
+    "directed_by": "Takashi Miike",
+    "main_actors": ["Takuya Kimura", "Ko Shibasaki"]
+  },
+  {
+    "title": "Letters from Berlin",
+    "release_year": 2023,
+    "genere": "Romance",
+    "synopsis": "In 1989, a West German journalist and an East German ballerina begin a secret romance amidst the fall of the Berlin Wall.",
+    "country": "Germany",
+    "views": 1780000,
+    "directed_by": "Florian Henckel von Donnersmarck",
+    "main_actors": ["Paula Beer", "Louis Hofmann"]
+  },
+  {
+    "title": "The Librarian's Apprentice",
+    "release_year": 2024,
+    "genere": "Fantasy",
+    "synopsis": "A young girl discovers that the books in her grandmother's library are portals to the worlds within their stories.",
+    "country": "Italy",
+    "views": 3120000,
+    "directed_by": "Ginevra Elkann",
+    "main_actors": ["Maya Hawke", "Isabella Rossellini"]
+  },
+  {
+    "title": "Siberian Solo",
+    "release_year": 2022,
+    "genere": "Adventure",
+    "synopsis": "A woman attempts to be the first person to cross the Siberian wilderness in winter on a solo dogsled expedition.",
+    "country": "Russia",
+    "views": 1420000,
+    "directed_by": "Kantemir Balagov",
+    "main_actors": ["Yuliya Peresild", "Vladimir Mashkov"]
+  },
+  {
+    "title": "The Last Blockbuster",
+    "release_year": 2023,
+    "genere": "Comedy",
+    "synopsis": "The staff of the world's last remaining Blockbuster Video store will do anything to keep their beloved store from closing.",
+    "country": "USA",
+    "views": 5800000,
+    "directed_by": "David Wain",
+    "main_actors": ["Andy Samberg", "Cristin Milioti"]
+  },
+  {
+    "title": "Shadow on the Sun",
+    "release_year": 2025,
+    "genere": "Science fiction",
+    "synopsis": "A solar event grants a small percentage of the population superpowers, leading to a new, volatile class system.",
+    "country": "USA",
+    "views": 4050000,
+    "directed_by": "Ava DuVernay",
+    "main_actors": ["Jonathan Majors", "Zazie Beetz"]
+  },
+  {
+    "title": "The Grief Eater",
+    "release_year": 2024,
+    "genere": "Horror",
+    "synopsis": "A creature from Filipino folklore preys on a family mourning the loss of their matriarch.",
+    "country": "Philippines",
+    "views": 3650000,
+    "directed_by": "Mikhail Red",
+    "main_actors": ["Bea Alonzo", "John Arcilla"]
+  },
+  {
+    "title": "The Ballad of Buster Scruggs: Part II",
+    "release_year": 2025,
+    "genere": "Western",
+    "synopsis": "A new anthology of tall tales from the Old West, featuring singing cowboys, desperate outlaws, and fool's gold.",
+    "country": "USA",
+    "views": 1250000,
+    "directed_by": "The Coen Brothers",
+    "main_actors": ["Tim Blake Nelson", "Meryl Streep"]
+  },
+  {
+    "title": "The Sound of Silence",
+    "release_year": 2023,
+    "genere": "Drama",
+    "synopsis": "A world-renowned conductor begins to lose his hearing and must find a new way to connect with the music he loves.",
+    "country": "Austria",
+    "views": 1680000,
+    "directed_by": "Michael Haneke",
+    "main_actors": ["Christoph Waltz", "Vicky Krieps"]
+  },
+  {
+    "title": "Project: Chimera",
+    "release_year": 2024,
+    "genere": "Action",
+    "synopsis": "An elite soldier, enhanced with animal DNA, goes rogue to expose the corrupt agency that created him.",
+    "country": "South Africa",
+    "views": 3550000,
+    "directed_by": "Neill Blomkamp",
+    "main_actors": ["John Boyega", "Danai Gurira"]
+  },
+  {
+    "title": "A Royal Mess",
+    "release_year": 2022,
+    "genere": "Comedy",
+    "synopsis": "A commoner who is the dead-ringer for a European princess is forced to take her place at a major public event.",
+    "country": "UK",
+    "views": 4700000,
+    "directed_by": "Olivia Wilde",
+    "main_actors": ["Lily James", "Sam Claflin"]
+  },
+  {
+    "title": "The Memory Keeper",
+    "release_year": 2025,
+    "genere": "Fantasy",
+    "synopsis": "A man who can erase people's memories is hired by a woman desperate to forget her past, but he falls in love with her instead.",
+    "country": "South Korea",
+    "views": 2880000,
+    "directed_by": "Park Chan-wook",
+    "main_actors": ["Song Kang-ho", "Jeon Jong-seo"]
+  },
+  {
+    "title": "The Deep End of Fear",
+    "release_year": 2023,
+    "genere": "Horror",
+    "synopsis": "A family moves into a modern smart home that begins to learn and manifest their deepest, most irrational fears.",
+    "country": "USA",
+    "views": 5100000,
+    "directed_by": "Mike Flanagan",
+    "main_actors": ["Kate Siegel", "Rahul Kohli"]
+  },
+  {
+    "title": "The Last Dive",
+    "release_year": 2022,
+    "genere": "Adventure",
+    "synopsis": "A deep-sea salvage crew discovers a sunken WWII U-boat with a priceless treasure and a deadly, dormant secret.",
+    "country": "Greece",
+    "views": 1980000,
+    "directed_by": "Yorgos Lanthimos",
+    "main_actors": ["Colin Farrell", "Rachel Weisz"]
+  },
+  {
+    "title": "The Inventor's Dilemma",
+    "release_year": 2024,
+    "genere": "Science fiction",
+    "synopsis": "A brilliant inventor creates a device that can solve any problem, but its solutions become increasingly morally ambiguous.",
+    "country": "Sweden",
+    "views": 2320000,
+    "directed_by": "Ruben Östlund",
+    "main_actors": ["Alicia Vikander", "Stellan Skarsgård"]
+  },
+  {
+    "title": "The Unbreakable Thread",
+    "release_year": 2025,
+    "genere": "Romance",
+    "synopsis": "Two souls are repeatedly reincarnated throughout history, finding each other and falling in love in every lifetime.",
+    "country": "India",
+    "views": 4250000,
+    "directed_by": "Sanjay Leela Bhansali",
+    "main_actors": ["Deepika Padukone", "Ranveer Singh"]
+  },
+  {
+    "title": "Woolly",
+    "release_year": 2023,
+    "genere": "Animation",
+    "synopsis": "The misadventures of a clumsy, overly optimistic woolly mammoth who was thawed out in the 21st century.",
+    "country": "USA",
+    "views": 7100000,
+    "directed_by": "Byron Howard",
+    "main_actors": ["John Krasinski", "Maya Rudolph"]
+  },
+  {
+    "title": "The Forgotten Front",
+    "release_year": 2022,
+    "genere": "Documentary",
+    "synopsis": "The untold stories of the African soldiers who fought in the Asian theater of World War II.",
+    "country": "Kenya",
+    "views": 580000,
+    "directed_by": "Wanuri Kahiu",
+    "main_actors": []
+  },
+  {
+    "title": "The Sheriff of Deadwood",
+    "release_year": 2024,
+    "genere": "Western",
+    "synopsis": "A cynical, retired lawman is pulled back into service when a notorious outlaw he put away returns for revenge.",
+    "country": "USA",
+    "views": 1550000,
+    "directed_by": "Taylor Sheridan",
+    "main_actors": ["Jeffrey Dean Morgan", "Katherine Waterston"]
+  },
+  {
+    "title": "The Glass Heart",
+    "release_year": 2023,
+    "genere": "Drama",
+    "synopsis": "A renowned glassblower, struggling with a degenerative eye disease, races to complete her final masterpiece.",
+    "country": "Italy",
+    "views": 920000,
+    "directed_by": "Luca Guadagnino",
+    "main_actors": ["Tilda Swinton", "Timothée Chalamet"]
+  },
+  {
+    "title": "Gravity's Rainbow",
+    "release_year": 2025,
+    "genere": "Science fiction",
+    "synopsis": "Astronauts on a deep-space mission encounter a mysterious energy field that alters their perception of reality and time.",
+    "country": "USA",
+    "views": 2980000,
+    "directed_by": "Christopher Nolan",
+    "main_actors": ["Michael Caine", "Anne Hathaway"]
+  },
+  {
+    "title": "The Curse of the Cobra's Eye",
+    "release_year": 2024,
+    "genere": "Adventure",
+    "synopsis": "Explorers hunt for a fabled gem in the depths of the Amazon, protected by an ancient curse and a hidden tribe.",
+    "country": "Peru",
+    "views": 2670000,
+    "directed_by": "Claudia Llosa",
+    "main_actors": ["Wagner Moura", "María Valverde"]
+  },
+  {
+    "title": "My Pet Monster",
+    "release_year": 2022,
+    "genere": "Comedy",
+    "synopsis": "A teenage boy's imaginary furry monster from childhood suddenly manifests in the real world as a large, destructive, but lovable beast.",
+    "country": "Canada",
+    "views": 4950000,
+    "directed_by": "Jean-François Pouliot",
+    "main_actors": ["Finn Wolfhard", "Ryan Reynolds"]
+  },
+  {
+    "title": "The Night Shift",
+    "release_year": 2023,
+    "genere": "Horror",
+    "synopsis": "The sole security guard for a modern art museum realizes the exhibits are coming to life after midnight.",
+    "country": "USA",
+    "views": 3750000,
+    "directed_by": "James Wan",
+    "main_actors": ["Ethan Hawke", "Jurnee Smollett"]
+  },
+  {
+    "title": "The Prince and the Pirate",
+    "release_year": 2025,
+    "genere": "Romance",
+    "synopsis": "A prince, kidnapped by pirates for ransom, ends up falling for the fierce and charismatic pirate captain.",
+    "country": "UK",
+    "views": 3380000,
+    "directed_by": "Sarah Gavron",
+    "main_actors": ["George MacKay", "Jessie Buckley"]
+  },
+  {
+    "title": "The Last Spellcaster",
+    "release_year": 2024,
+    "genere": "Fantasy",
+    "synopsis": "In a world where magic is fading, a young witch must embark on a quest to find the source of the decay before it's too late.",
+    "country": "Czech Republic",
+    "views": 2140000,
+    "directed_by": "Agnieszka Holland",
+    "main_actors": ["Saoirse Ronan", "Adam Driver"]
+  },
+  {
+    "title": "The Great Race",
+    "release_year": 2023,
+    "genere": "Action",
+    "synopsis": "An international, no-holds-barred car race from Paris to Dakar becomes a cover for a spy mission to stop an arms dealer.",
+    "country": "France",
+    "views": 4120000,
+    "directed_by": "Louis Leterrier",
+    "main_actors": ["Omar Sy", "Eva Green"]
+  },
+  {
+    "title": "Strings of Fate",
+    "release_year": 2022,
+    "genere": "Animation",
+    "synopsis": "In a world made of yarn and fabric, a young tailor must mend a tear in the sky to save her village from unraveling.",
+    "country": "Ireland",
+    "views": 1850000,
+    "directed_by": "Tomm Moore",
+    "main_actors": ["Brendan Gleeson", "Saoirse Ronan"]
+  },
+  {
+    "title": "The Weight of Water",
+    "release_year": 2025,
+    "genere": "Drama",
+    "synopsis": "The story of a deep-sea diver working on an oil rig, grappling with isolation, a troubled past, and a growing environmental conscience.",
+    "country": "Norway",
+    "views": 1320000,
+    "directed_by": "Erik Poppe",
+    "main_actors": ["Stellan Skarsgård", "Kristine Kujath Thorp"]
+  },
+  {
+    "title": "The Man Who Sold the Moon",
+    "release_year": 2024,
+    "genere": "Science fiction",
+    "synopsis": "A ruthless entrepreneur in the near future stakes a claim to lunar territory, sparking a new corporate space race.",
+    "country": "USA",
+    "views": 3220000,
+    "directed_by": "Duncan Jones",
+    "main_actors": ["Benedict Cumberbatch", "Gillian Anderson"]
+  },
+  {
+    "title": "The Lonesome Trail",
+    "release_year": 2022,
+    "genere": "Western",
+    "synopsis": "A mute cowboy escorts a kidnapped woman back to her family across the harsh and unforgiving desert.",
+    "country": "USA",
+    "views": 980000,
+    "directed_by": "Scott Cooper",
+    "main_actors": ["Christian Bale", "Margaret Qualley"]
+  },
+  {
+    "title": "The Ghost and Mrs. Muir",
+    "release_year": 2025,
+    "genere": "Romance",
+    "synopsis": "A modern remake where a cynical ghost haunting a coastal cottage falls in love with the skeptical writer who rents it.",
+    "country": "UK",
+    "views": 2750000,
+    "directed_by": "Joe Wright",
+    "main_actors": ["Michael Sheen", "Florence Pugh"]
+  },
+  {
+    "title": "The Clockwork Dragon",
+    "release_year": 2023,
+    "genere": "Fantasy",
+    "synopsis": "In a steampunk Victorian London, a young engineer must rebuild a legendary clockwork dragon to stop a plot against the Queen.",
+    "country": "UK",
+    "views": 3980000,
+    "directed_by": "Martin Scorsese",
+    "main_actors": ["Eddie Redmayne", "Helena Bonham Carter"]
+  },
+  {
+    "title": "Heist of the Century",
+    "release_year": 2024,
+    "genere": "Action",
+    "synopsis": "A master thief assembles a team to pull off an impossible heist: stealing a priceless artifact from a moving maglev train.",
+    "country": "China",
+    "views": 4880000,
+    "directed_by": "Zhang Yimou",
+    "main_actors": ["Donnie Yen", "Liu Yifei"]
+  },
+  {
+    "title": "The Secret of the Sphinx",
+    "release_year": 2025,
+    "genere": "Adventure",
+    "synopsis": "A new geological scan reveals a hidden chamber beneath the Sphinx, leading to a race to uncover its ancient secrets.",
+    "country": "Egypt",
+    "views": 3540000,
+    "directed_by": "Youssef Chahine",
+    "main_actors": ["Amr Waked", "Mena Massoud"]
+  },
+  {
+    "title": "The History of Snow",
+    "release_year": 2022,
+    "genere": "Documentary",
+    "synopsis": "A visual and scientific journey exploring the critical role snow and ice play in Earth's climate and ecosystems.",
+    "country": "Iceland",
+    "views": 720000,
+    "directed_by": "Dagur Kári",
+    "main_actors": []
+  },
+  {
+    "title": "The Last Joke",
+    "release_year": 2023,
+    "genere": "Comedy",
+    "synopsis": "A legendary comedian, on his deathbed, recounts the one joke that got away - the perfect joke he could never make work.",
+    "country": "USA",
+    "views": 2650000,
+    "directed_by": "Adam McKay",
+    "main_actors": ["Steve Carell", "Tina Fey"]
+  },
+  {
+    "title": "The Dollmaker",
+    "release_year": 2024,
+    "genere": "Horror",
+    "synopsis": "A toymaker's beautiful, handcrafted dolls are so lifelike because they contain the trapped souls of his victims.",
+    "country": "Poland",
+    "views": 4120000,
+    "directed_by": "Agnieszka Smoczyńska",
+    "main_actors": ["Mads Mikkelsen", "Rebecca Ferguson"]
+  },
+  {
+    "title": "The Star-Gazer",
+    "release_year": 2025,
+    "genere": "Drama",
+    "synopsis": "The life and struggles of 17th-century astronomer Maria Margarethe Kirch, the first woman to discover a comet.",
+    "country": "Germany",
+    "views": 1180000,
+    "directed_by": "Maria Schrader",
+    "main_actors": ["Nina Hoss", "Daniel Brühl"]
+  },
+  {
+    "title": "The Quantum Thief",
+    "release_year": 2024,
+    "genere": "Science fiction",
+    "synopsis": "In a post-singularity Mars, a master thief who can manipulate quantum information is hired for the ultimate heist: stealing a memory from the past.",
+    "country": "Finland",
+    "views": 2280000,
+    "directed_by": "Antti J. Jokinen",
+    "main_actors": ["Joonas Suotamo", "Laura Birn"]
+  },
+  {
+    "title": "The Sunken City of Z",
+    "release_year": 2023,
+    "genere": "Adventure",
+    "synopsis": "A team of marine archaeologists discovers evidence of a sophisticated ancient civilization at the bottom of the North Sea.",
+    "country": "Netherlands",
+    "views": 1950000,
+    "directed_by": "Martin Koolhoven",
+    "main_actors": ["Matthias Schoenaerts", "Carice van Houten"]
+  },
+  {
+    "title": "The Princess and the Pea",
+    "release_year": 2025,
+    "genere": "Animation",
+    "synopsis": "A modern, musical retelling of the classic fairy tale, where the princess is a savvy, modern-day activist.",
+    "country": "USA",
+    "views": 5450000,
+    "directed_by": "Byron Howard",
+    "main_actors": ["Keke Palmer", "Donald Glover"]
+  },
+  {
+    "title": "The Final Round",
+    "release_year": 2022,
+    "genere": "Action",
+    "synopsis": "An aging MMA fighter gets one last shot at the title, but must face the young, brutal protégé he himself trained.",
+    "country": "Thailand",
+    "views": 3320000,
+    "directed_by": "Prachya Pinkaew",
+    "main_actors": ["Tony Jaa", "Joe Taslim"]
+  },
+  {
+    "title": "The Lighthouse Keeper's Daughter",
+    "release_year": 2024,
+    "genere": "Romance",
+    "synopsis": "In 1920s Nova Scotia, a reclusive lighthouse keeper's daughter falls for a shipwrecked artist from the city.",
+    "country": "Canada",
+    "views": 1880000,
+    "directed_by": "Sarah Polley",
+    "main_actors": ["Mackenzie Davis", "Lucas Hedges"]
+  },
+  {
+    "title": "The Beast of Gévaudan",
+    "release_year": 2023,
+    "genere": "Horror",
+    "synopsis": "A historical horror based on the true story of the 18th-century beast that terrorized the French countryside.",
+    "country": "France",
+    "views": 4010000,
+    "directed_by": "Julia Ducournau",
+    "main_actors": ["Vincent Lindon", "Adèle Exarchopoulos"]
+  },
+  {
+    "title": "The Last Show on Earth",
+    "release_year": 2025,
+    "genere": "Comedy",
+    "synopsis": "In the midst of a zombie apocalypse, a troupe of actors insists on performing one last, perfect Shakespeare play.",
+    "country": "USA",
+    "views": 3950000,
+    "directed_by": "Taika Waititi",
+    "main_actors": ["Daniel Radcliffe", "Olivia Colman"]
+  },
+  {
+    "title": "The Silk Road",
+    "release_year": 2022,
+    "genere": "Adventure",
+    "synopsis": "A merchant's epic journey along the Silk Road in the 13th century, facing bandits, natural disasters, and cultural wonders.",
+    "country": "China",
+    "views": 2250000,
+    "directed_by": "Zhang Yimou",
+    "main_actors": ["Chen Daoming", "Zhou Xun"]
+  },
+  {
+    "title": "The Memory of Trees",
+    "release_year": 2024,
+    "genere": "Fantasy",
+    "synopsis": "A woman inherits her grandmother's forest and discovers she can see the memories stored within the ancient trees.",
+    "country": "Sweden",
+    "views": 1720000,
+    "directed_by": "Roy Andersson",
+    "main_actors": ["Alicia Vikander", "Stellan Skarsgård"]
+  },
+  {
+    "title": "The Cleaner",
+    "release_year": 2023,
+    "genere": "Action",
+    "synopsis": "A former intelligence agent, now working as a humble office cleaner, is forced back into action when his building is taken hostage.",
+    "country": "USA",
+    "views": 4650000,
+    "directed_by": "David Leitch",
+    "main_actors": ["Keanu Reeves", "Lauren Cohan"]
+  },
+  {
+    "title": "The Color of Distance",
+    "release_year": 2025,
+    "genere": "Science fiction",
+    "synopsis": "The sole survivor of a crashed spaceship must adapt to a alien world where the inhabitants communicate through color changes in their skin.",
+    "country": "USA",
+    "views": 2580000,
+    "directed_by": "Nia DaCosta",
+    "main_actors": ["Letitia Wright", "Winston Duke"]
+  },
+  {
+    "title": "The Book of Love",
+    "release_year": 2022,
+    "genere": "Romance",
+    "synopsis": "Two rival authors, who secretly admire each other's work, are forced to co-write a novel under pseudonyms.",
+    "country": "UK",
+    "views": 3120000,
+    "directed_by": "Richard Curtis",
+    "main_actors": ["Lily James", "Sam Heughan"]
+  },
+  {
+    "title": "The Shadow Puppeteer",
+    "release_year": 2024,
+    "genere": "Horror",
+    "synopsis": "In Indonesia, a traditional shadow puppeteer discovers his puppets can physically manifest and enact his stories with deadly consequences.",
+    "country": "Indonesia",
+    "views": 4450000,
+    "directed_by": "Joko Anwar",
+    "main_actors": ["Iko Uwais", "Tara Basro"]
+  },
+  {
+    "title": "The Last Fisherman",
+    "release_year": 2023,
+    "genere": "Drama",
+    "synopsis": "In a small coastal village depleted by overfishing, an old fisherman takes his boat out for one final, symbolic catch.",
+    "country": "Japan",
+    "views": 1050000,
+    "directed_by": "Kore-eda Hirokazu",
+    "main_actors": ["Ken Watanabe", "Sakura Ando"]
+  },
+  {
+    "title": "The Great Martian Heist",
+    "release_year": 2025,
+    "genere": "Science fiction",
+    "synopsis": "A crew of asteroid miners plot to steal a priceless mineral core from a corporate-owned facility on Mars.",
+    "country": "USA",
+    "views": 3850000,
+    "directed_by": "Drew Goddard",
+    "main_actors": ["Ryan Gosling", "Zoe Saldana"]
+  },
+  {
+    "title": "The Unlikely Spy",
+    "release_year": 2022,
+    "genere": "Action",
+    "synopsis": "A mild-mannered accountant is recruited by the CIA because his perfect memory and bland appearance make him the perfect undercover asset.",
+    "country": "USA",
+    "views": 4220000,
+    "directed_by": "Doug Liman",
+    "main_actors": ["Jesse Plemons", "Maggie Gyllenhaal"]
+  },
+  {
+    "title": "The Phantom of the Opera: A New Score",
+    "release_year": 2024,
+    "genere": "Romance",
+    "synopsis": "A modern reimagining set in the world of competitive electronic music production.",
+    "country": "USA",
+    "views": 2980000,
+    "directed_by": "Damien Chazelle",
+    "main_actors": ["Ansel Elgort", "Mckenna Grace"]
+  },
+  {
+    "title": "The Curious Case of the Clockwork Cat",
+    "release_year": 2023,
+    "genere": "Animation",
+    "synopsis": "In a Victorian-era city of animals, a brilliant mouse detective and her robotic feline assistant solve their biggest case.",
+    "country": "France",
+    "views": 4850000,
+    "directed_by": "Michel Ocelot",
+    "main_actors": ["Marion Cotillard", "Jean Dujardin"]
+  },
+  {
+    "title": "The Last Dance",
+    "release_year": 2025,
+    "genere": "Documentary",
+    "synopsis": "An intimate look at the final season of a legendary, aging ballet dancer with a major European company.",
+    "country": "Russia",
+    "views": 890000,
+    "directed_by": "Victor Kossakovsky",
+    "main_actors": []
+  },
+  {
+    "title": "The Highwayman's Lament",
+    "release_year": 2022,
+    "genere": "Western",
+    "synopsis": "A notorious highwayman seeks redemption by protecting a group of settlers from a corrupt land baron.",
+    "country": "USA",
+    "views": 1350000,
+    "directed_by": "Debra Granik",
+    "main_actors": ["Ben Foster", "Thomasin McKenzie"]
+  },
+  {
+    "title": "The Glassblower's Daughter",
+    "release_year": 2024,
+    "genere": "Drama",
+    "synopsis": "In 19th century Venice, a young woman fights to take over her ailing father's glassblowing workshop in a male-dominated guild.",
+    "country": "Italy",
+    "views": 1280000,
+    "directed_by": "Alice Rohrwacher",
+    "main_actors": ["Alba Rohrwacher", "Willem Dafoe"]
+  },
+  {
+    "title": "The Starfall",
+    "release_year": 2023,
+    "genere": "Fantasy",
+    "synopsis": "A fallen star, taking the form of a young woman, must find her way back to the heavens before a dark sorcerer uses her power to plunge the world into eternal night.",
+    "country": "UK",
+    "views": 3650000,
+    "directed_by": "Tom Harper",
+    "main_actors": ["Florence Pugh", "Michael Sheen"]
+  },
+  {
+    "title": "The Siege of Jadotville 2",
+    "release_year": 2025,
+    "genere": "Action",
+    "synopsis": "A fictional sequel following the same Irish peacekeeping unit into a new, even more dangerous conflict in a war-torn nation.",
+    "country": "Ireland",
+    "views": 2780000,
+    "directed_by": "Richie Smyth",
+    "main_actors": ["Jamie Dornan", "Cillian Murphy"]
+  },
+  {
+    "title": "The Accidental Billionaire",
+    "release_year": 2022,
+    "genere": "Comedy",
+    "synopsis": "A lazy, unmotivated man accidentally invents a useless product that, through a series of misunderstandings, becomes a global phenomenon.",
+    "country": "USA",
+    "views": 6120000,
+    "directed_by": "Jake Kasdan",
+    "main_actors": ["Andy Samberg", "Megan Thee Stallion"]
+  },
+  {
+    "title": "The House at the End of the Lane",
+    "release_year": 2024,
+    "genere": "Horror",
+    "synopsis": "A family moves into their dream home, only to discover it exists at a crossroads between our world and a dimension of predatory entities.",
+    "country": "USA",
+    "views": 4880000,
+    "directed_by": "Jennifer Kent",
+    "main_actors": ["Essie Davis", "Noah Jupe"]
+  },
+  {
+    "title": "The Song of the Sea",
+    "release_year": 2023,
+    "genere": "Romance",
+    "synopsis": "A fisherman saves a woman from a shipwreck who claims to be a selkie, a mythical creature from the sea.",
+    "country": "Ireland",
+    "views": 2150000,
+    "directed_by": "John Carney",
+    "main_actors": ["Domhnall Gleeson", "Ruth Negga"]
+  },
+  {
+    "title": "The Last Alchemist",
+    "release_year": 2025,
+    "genere": "Fantasy",
+    "synopsis": "The last practitioner of true alchemy must protect the Philosopher's Stone from a secret society that wants to use it for world domination.",
+    "country": "Czech Republic",
+    "views": 2420000,
+    "directed_by": "Jan Svěrák",
+    "main_actors": ["Ivan Trojan", "Martha Issová"]
+  },
+  {
+    "title": "The Berlin Connection",
+    "release_year": 2022,
+    "genere": "Action",
+    "synopsis": "A Cold War spy thriller set in 1970s Berlin, centered on a double agent being hunted by both the KGB and the CIA.",
+    "country": "Germany",
+    "views": 3350000,
+    "directed_by": "Christian Petzold",
+    "main_actors": ["Nina Hoss", "Ronald Zehrfeld"]
+  },
+  {
+    "title": "The Infinite Library",
+    "release_year": 2024,
+    "genere": "Science fiction",
+    "synopsis": "A librarian discovers a secret section of her library that contains books detailing every possible future, including her own death.",
+    "country": "Canada",
+    "views": 1950000,
+    "directed_by": "Denis Villeneuve",
+    "main_actors": ["Carey Mulligan", "Jesse Eisenberg"]
+  },
+  {
+    "title": "The Ballad of Halo Jones",
+    "release_year": 2023,
+    "genere": "Animation",
+    "synopsis": "An animated feature based on the iconic graphic novel, following a young woman's extraordinary journey across the galaxy.",
+    "country": "UK",
+    "views": 1850000,
+    "directed_by": "Peter Lord",
+    "main_actors": ["Jodie Whittaker", "David Tennant"]
+  },
+  {
+    "title": "The Price of Salt",
+    "release_year": 2025,
+    "genere": "Drama",
+    "synopsis": "A period drama about the forbidden romance between a department-store clerk and an older, sophisticated woman in 1950s New York.",
+    "country": "USA",
+    "views": 1650000,
+    "directed_by": "Todd Haynes",
+    "main_actors": ["Kristen Stewart", "Cate Blanchett"]
+  },
+  {
+    "title": "The Final Frontier: A Voyager Story",
+    "release_year": 2022,
+    "genere": "Documentary",
+    "synopsis": "Chronicling the incredible journey of the Voyager space probes, from their launch to their exit into interstellar space.",
+    "country": "USA",
+    "views": 950000,
+    "directed_by": "Rory Kennedy",
+    "main_actors": ["Jaime Bonilla", "Anita Ruelas"]
+  },
+  {
+    "title": "The Quick and the Cursed",
+    "release_year": 2024,
+    "genere": "Western",
+    "synopsis": "A gunslinger cursed with immortality hunts the demon that made him this way across the changing landscape of the American West.",
+    "country": "USA",
+    "views": 2050000,
+    "directed_by": "Robert Rodriguez",
+    "main_actors": ["Pedro Pascal", "Salma Hayek"]
+  }
+]
