@@ -34,7 +34,7 @@ app.get('/load-all-movies', (req, res) => {
       res.sendFile(path.join(__dirname, 'public', 'load-all-movies.html'));
     });
 
-app.get('/test-single-movie', (req, res) => {
+app.get('/single-movie', (req, res) => {
       res.sendFile(path.join(__dirname, 'public', 'single-movie.html'));
     });
 
