@@ -68,27 +68,33 @@
         return;
       }
       try {
-        const response = await axios.get(`${moviesAPI}${movieId}`);
-        movie =  response.data.data;
+        axios.get(`${moviesAPI}${movieId}`)
+        .then(response =>{
+          movie =  response.data.data;
 
-        detailsContent.innerHTML = `
-          <h3>${movie.title}</h3>
-          <p><strong>Title:</strong>  <input type="text" id="title" placeholder="${movie.title}"/>  </p>
-          <p><strong>Release Year:</strong>  <input type="text" id="release_year" placeholder="${movie.release_year}"/>  </p>
-          <p><strong>Country:</strong>  <input type="text" id="country" placeholder="${movie.country}"/>  </p>
-          <p><strong>Genere:</strong>  <input type="text" id="genere" placeholder="${movie.genere}"/> </p>
-          <p><strong>Directed by:</strong>  <input type="text" id="directed_by" placeholder="${movie.directed_by}"/>  </p>
-          <p><strong>Main Actors/Actresses:</strong>  <input type="text" id="main_actors" size="80" placeholder="${movie.main_actors}"/>  </p>
-          <p><strong>Synopsis:</strong>  <textarea id="synopsis" placeholder="${movie.synopsis}" rows="5" cols="40" maxlength="500"></textarea> </p>
+          detailsContent.innerHTML = `
+            <h3>${movie.title}</h3>
+            <p><strong>Title:</strong>  <input type="text" id="title" placeholder="${movie.title}"/>  </p>
+            <p><strong>Release Year:</strong>  <input type="text" id="release_year" placeholder="${movie.release_year}"/>  </p>
+            <p><strong>Country:</strong>  <input type="text" id="country" placeholder="${movie.country}"/>  </p>
+            <p><strong>Genere:</strong>  <input type="text" id="genere" placeholder="${movie.genere}"/> </p>
+            <p><strong>Directed by:</strong>  <input type="text" id="directed_by" placeholder="${movie.directed_by}"/>  </p>
+            <p><strong>Main Actors/Actresses:</strong>  <input type="text" id="main_actors" size="80" placeholder="${movie.main_actors}"/>  </p>
+            <p><strong>Synopsis:</strong>  <textarea id="synopsis" placeholder="${movie.synopsis}" rows="5" cols="40" maxlength="500"></textarea> </p>
 
-          <p id="pviews" style="font-size: 20px;"><strong>Total Views: ${movie.views}</strong></p>
-          <input type="hidden" id="views" value=${movie.views}>
-        `;
+            <p id="pviews" style="font-size: 20px;"><strong>Total Views: ${movie.views.toLocaleString()}</strong></p>
+            <input type="hidden" id="views" value=${movie.views}>
+          `;
 
-        document.getElementById('updateMovie').disabled= false;
-        document.getElementById('updateViews').disabled= false;
-        document.getElementById('delete').disabled= false;
+          document.getElementById('updateMovie').disabled= false;
+          document.getElementById('updateViews').disabled= false;
+          document.getElementById('delete').disabled= false;
 
+        })
+        .catch(error =>{
+          throw error;
+        });
+        
       } catch (error) {
         console.error('Error fetching movie details:', error);
         detailsContent.innerHTML = '<p style="color:red;">Failed to load movie details.</p>';
@@ -120,7 +126,7 @@
 
       axios.patch(`${moviesAPI}${movie.id}`,{views: `${updated_views}`})
       .then(response=>{
-        document.getElementById('pviews').innerHTML = `<strong>Total Views: ${updated_views}</strong>`
+        document.getElementById('pviews').innerHTML = `<strong>Total Views: ${updated_views.toLocaleString()}</strong>`
         document.getElementById('views').value = updated_views;
         window.alert(`Number of views incresed to: ${updated_views}`);
       })
