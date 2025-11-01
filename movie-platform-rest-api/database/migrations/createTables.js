@@ -1,5 +1,25 @@
 const database = require('../../config/database.cjs');
 
+async function dropTableIfAlreadyExists(){
+    try{
+        const db = await database.connect();
+        await new Promise((resolve, reject)=>{
+            db.run('DROP TABLE IF EXISTS movies',(err)=>{
+                if(err){
+                    reject(err);
+                }else{
+                    resolve();
+                }
+            });
+        });
+        console.log('Table movies already existed, will be erased');
+        await database.disconnect();
+    }catch(error){
+        console.error('Migration failed on drop movies table: '+error.message);
+        process.exit(1);
+    }
+}
+
 async function createTables(){
     try{
         const db = await database.connect();
@@ -36,4 +56,5 @@ async function createTables(){
     }
 }
 
+dropTableIfAlreadyExists();
 createTables();
