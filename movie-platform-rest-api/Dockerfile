@@ -25,8 +25,7 @@ RUN npm install
 RUN npm run migrate
 RUN npm run seed
 
-#declare a volume for persistent database storage
-VOLUME ["nodejs-challenge/MoviePlatform/movie-platform-rest-api/database"]
+# Expose port for Node.js server
 EXPOSE 3000/tcp
 
 CMD ["npm", "start"]
