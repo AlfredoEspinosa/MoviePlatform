@@ -21,6 +21,9 @@ RUN echo "Files in /movie-platform-rest-api:" && ls -la
 #Install dependencies
 RUN npm install
 
+# install dev dependencies
+RUN npm install --save-dev jest
+
 #Run migrate and seed to drop movie table and recreate It with first 10 records
 RUN npm run migrate
 RUN npm run seed
