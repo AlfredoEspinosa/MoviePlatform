@@ -45,7 +45,7 @@ function validateMovieRecord(req, res, next){
 
 
   if(errors.length>0){
-        return res.status(404).json({
+        return res.status(400).json({
         success: false,
         error: `Bad Request - Invaild data:  ${errors}`
     });
