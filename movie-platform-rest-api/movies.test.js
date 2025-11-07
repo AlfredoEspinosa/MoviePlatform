@@ -1,7 +1,7 @@
 // movies.test.js
 const request = require('supertest');
 const express = require('express');
-const moviesRouter = require('../routes/movies');
+const moviesRouter = require('./routes/movies');
 
 
 const app = express();
