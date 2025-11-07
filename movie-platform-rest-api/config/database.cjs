@@ -27,7 +27,7 @@ class DatabaseConfig {
             if (this.db) {
                 this.db.close((err) => {
                     if (err) {
-                        reject(new Error(`An error occurred while closing connection from movie platofmr Data Base: ${err.message}`));
+                        reject(new Error(`An error occurred while closing connection from movie platform Data Base: ${err.message}`));
                     } else {
                         console.log('Data Base connection closed successfully');
                         resolve();
