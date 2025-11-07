@@ -49,12 +49,14 @@ async function createTables(){
         });
 
         console.log('movies table has been created succsessfully');
-        database.disconnect();
+        await database.disconnect();
     }catch(error){
         console.error('Migration failed:', error.message);
         process.exit(1);
     }
 }
 
-dropTableIfAlreadyExists();
-createTables();
+(async () => {
+    await dropTableIfAlreadyExists();
+    await createTables();
+})();
