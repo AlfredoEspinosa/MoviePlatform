@@ -48,8 +48,8 @@ async function createTables(){
                 });
         });
 
-        console.log('movies table has benn created succsessfully');
-        await database.disconnect();
+        console.log('movies table has been created succsessfully');
+        database.disconnect();
     }catch(error){
         console.error('Migration failed:', error.message);
         process.exit(1);
