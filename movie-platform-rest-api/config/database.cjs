@@ -1,49 +1,29 @@
-const sqlite3 = require('sqlite3');
-const path = require('path');
+const { Pool } = require("pg");
 
 class DatabaseConfig {
-    constructor() {
-        this.dbPath = path.join(__dirname, '..', 'database', 'movie_platform.sqlite3');
-        this.db = null;
-    }
+  constructor() {
+    this.pool = new Pool({
+      host: process.env.DB_HOST || "localhost",
+      port: Number.parseInt(process.env.DB_PORT || "5432"),
+      user: process.env.DB_USER || "postgres",
+      password: process.env.DB_PASSWORD || "postgres",
+      database: process.env.DB_NAME || "movie_platform",
+    });
+  }
 
-    connect() {
-        console.log(this.dbPath);
+  async connect() {
+    const client = await this.pool.connect();
+    console.log("Connected to PostgreSQL");
+    return client;
+  }
 
-        return new Promise((resolve, reject) => {
-            this.db = new sqlite3.Database(this.dbPath, (err) => {
-                if (err) {
-                    reject(new Error(`Data Base connection error: ${err.message}`));
-                } else {
-                    console.log('Successfully connected to movie_platform Data Base');
-                    resolve(this.db);
-                }
-            });
-        });
-    }
+  async disconnect(client) {
+    if (client) client.release();
+  }
 
-    disconnect() {
-        return new Promise((resolve, reject) => {
-            if (this.db) {
-                this.db.close((err) => {
-                    if (err) {
-                        reject(new Error(`An error occurred while closing connection from movie platform Data Base: ${err.message}`));
-                    } else {
-                        console.log('Data Base connection closed successfully');
-                        resolve();
-                    }
-                });
-            }
-        });
-    }
-
-    getDatabase() {
-        if (!this.db) {
-            throw new Error('Database not connected.');
-        }
-        return this.db;
-    }
+  getPool() {
+    return this.pool;
+  }
 }
 
 module.exports = new DatabaseConfig();
-
