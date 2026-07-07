@@ -116,7 +116,26 @@ const sampleMovies = [
 async function seedMovies() {
   try {
     const client = await database.connect();
-    await client.query(`DELETE FROM movies`);
+    const force = process.argv.includes("--force");
+
+    const { rows } = await client.query(
+      `SELECT COUNT(*) AS count FROM movies`,
+    );
+    const hasData = parseInt(rows[0].count) > 0;
+
+    if (hasData && !force) {
+      console.log(
+        `Movies table already has ${rows[0].count} records. Skipping seed.`,
+      );
+      console.log("Use --force to wipe and re-seed.");
+      database.disconnect(client);
+      process.exit(0);
+    }
+
+    if (force) {
+      await client.query(`DELETE FROM movies`);
+      console.log("Existing data wiped.");
+    }
 
     for (const movie of sampleMovies) {
       await client.query(

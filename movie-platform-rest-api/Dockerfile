@@ -1,36 +1,16 @@
-# Base image: light version of linux with nodejs v 22
 FROM node:22-alpine
 
-#Install git
-RUN apk update && apk add git
+RUN apk update && apk add postgresql-client
 
-#Set a working directory
-WORKDIR /nodejs-challenge
+WORKDIR /app
 
-#Clone project repository
-RUN git clone https://github.com/AlfredoEspinosa/MoviePlatform.git
-
-#Set to the project directory
-WORKDIR /nodejs-challenge/MoviePlatform//movie-platform-rest-api
-
-# Print current directory
-RUN echo "Current directory:" && pwd
-# List files in the current directory
-RUN echo "Files in /movie-platform-rest-api:" && ls -la
-
-#Install dependencies
+COPY package*.json ./
 RUN npm install
 
-# install dev dependencies
-RUN npm install --save-dev jest
+COPY . .
 
-#Run migrate and seed to drop movie table and recreate It with first 10 records
-RUN npm run migrate
-RUN npm run seed
+RUN chmod +x docker-entrypoint.sh
 
-# Expose port for Node.js server
 EXPOSE 3000/tcp
 
-CMD ["npm", "start"]
-
-
+ENTRYPOINT ["./docker-entrypoint.sh"]
