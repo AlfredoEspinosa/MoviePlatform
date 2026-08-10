@@ -9,7 +9,8 @@ RUN npm install
 
 COPY . .
 
-RUN chmod +x docker-entrypoint.sh
+RUN chmod +x docker-entrypoint.sh && chown -R node:node /app
+USER node
 
 EXPOSE 3000/tcp
 
