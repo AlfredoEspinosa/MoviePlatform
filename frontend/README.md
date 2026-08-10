@@ -1,16 +1,35 @@
-# React + Vite
+# MoviePlatform Frontend (React SPA)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the React single-page frontend for the MoviePlatform project. It is built with Vite + React 19 and consumes the REST API served by the Express backend.
 
-Currently, two official plugins are available:
+For the full project setup (database, backend API, and how to run the whole stack with docker-compose/podman-compose), see the [main README](../README.md).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Quick start
 
-## React Compiler
+```
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The Vite dev server runs on `http://localhost:5173/` and proxies `/api` requests to the backend (`http://localhost:3000` by default, or the `api` container inside docker-compose).
 
-## Expanding the ESLint configuration
+## Scripts
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+| Script | Description |
+|---|---|
+| `npm run dev` | Start the Vite dev server with HMR |
+| `npm run build` | Build the production bundle into `dist/` |
+| `npm run lint` | Run ESLint |
+| `npm run preview` | Preview the production build locally |
+
+## Features
+
+- Movie list with live (debounced) search/filter by title, country, director and genre.
+- Create a new movie record from a form.
+- Movie detail page (`/movie/:id`) with edit and soft-delete actions.
+
+## Project structure
+
+- `src/api/movies.js` — axios client with one function per API endpoint.
+- `src/pages/` — page components: `MovieListPage`, `MoviePage`, `MoviesStrip`, `Movie`.
+- `src/assets/` — movie poster images (bundled via `import.meta.glob`).
