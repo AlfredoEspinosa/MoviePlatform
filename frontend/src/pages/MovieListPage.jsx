@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getMovies } from "../api/movies";
 import { chunkArray } from "../utils/chunkArray";
 import MoviesStrip from "./MoviesStrip";
+import Movie from "./Movie";
 
 export default function MovieListPage() {
   // State
@@ -14,6 +15,7 @@ export default function MovieListPage() {
     country: "",
     directed_by: "",
   });
+  const [creating, setCreating] = useState(false);
 
   // Live search: fetch every time a filter changes, debounced 300ms.
   // Cleanup (return) cancels the pending timer and ignores stale responses.
@@ -44,9 +46,36 @@ export default function MovieListPage() {
     setFilters((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Called by <Movie> after a successful create: hide the form and reload the list
+  const handleCreated = async () => {
+    setCreating(false);
+    setLoading(true);
+    try {
+      const response = await getMovies(filters);
+      setMovies(response.data);
+      setError(null);
+    } catch (err) {
+      setError(err.response?.data?.error || err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
       <h1>Movie Platform</h1>
+
+      <div className="toolbar">
+        <button onClick={() => setCreating(true)}>+ Create New Movie</button>
+      </div>
+
+      {creating && (
+        <Movie
+          isCreating
+          onDone={handleCreated}
+          onCancel={() => setCreating(false)}
+        />
+      )}
 
       {/* Filters trigger the search automatically as you type/select */}
       <div className="filters">

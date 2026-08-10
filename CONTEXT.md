@@ -14,7 +14,7 @@ MoviePlatform is a sample Node.js REST API application for managing a movie cata
 - DB schema creation (migrations) and initial data load (seeds) run as Node scripts on container startup.
 - Unit testing with **Jest + Supertest**, plus a **GitHub Actions** CI workflow.
 
-Primary purpose today: demonstrate the API and CRUD operations. The Axios/HTML frontend is explicitly considered a placeholder and is **desired to be replaced by a small React application** (see §11).
+Primary purpose today: demonstrate the API and CRUD operations. The Axios/HTML frontend is being replaced by a **small React SPA** built with Vite in the `frontend/` folder (migration in progress — see §8 and §14).
 
 Repo: `https://github.com/AlfredoEspinosa/MoviePlatform.git` (branch `main`).
 
@@ -26,27 +26,25 @@ Repo: `https://github.com/AlfredoEspinosa/MoviePlatform.git` (branch `main`).
 ┌──────────────────────────────────────────────────────────────────┐
 │                          Host machine                            │
 │                                                                  │
-│   ┌───────────────────────────┐    ┌───────────────────────────┐ │
-│   │  api container            │    │  db container             │ │
-│   │  (node:22-alpine)         │    │  (postgres:16)            │ │
-│   │  ──────────────────────── │    │  ──────────────────────── │ │
-│   │  docker-entrypoint.sh     │    │  DB: movie_platform       │ │
-│   │   ├─ wait for pg (pg_isready)│  │  user/pass: postgres     │ │
-│   │   ├─ npm run migrate      │    │  port: 5432               │ │
-│   │   ├─ npm run seed         │    │  volume: movie-db-data    │ │
-│   │   └─ npm start (index.js) │    │                           │ │
-│   │  Express app on :3000     │    └───────────────────────────┘ │
-│   │   ├─ /api/movies/*  API   │                                  │
-│   │   └─ /public  static HTML │                                  │
-│   └───────────────────────────┘                                  │
-│        │  TCP 5432 (internal network)                            │
-└──────────────────────────────────────────────────────────────────┘
-        │
-        │ HTTP :3000 (browser/curl)
-        ▼
-   Browser → http://localhost:3000/  (endpoint listing JSON)
-             http://localhost:3000/load-all-movies  (HTML UI)
-             http://localhost:3000/single-movie     (HTML UI)
+│   ┌───────────────────────────┐    ┌───────────────────────────┐ ┌─────────────────────────┐ │
+│   │  api container            │    │  db container             │ │  frontend container      │ │
+│   │  (node:22-alpine)         │    │  (postgres:16)            │ │  (node:22-alpine)       │ │
+│   │  ──────────────────────── │    │  ──────────────────────── │ │  ───────────────────────│ │
+│   │  docker-entrypoint.sh     │    │  DB: movie_platform       │ │  Vite dev server :5173  │ │
+│   │   ├─ wait for pg (pg_isready)│  │  user/pass: postgres     │ │  /api → api:3000 (proxy)│ │
+│   │   ├─ npm run migrate      │    │  port: 5432               │ │  src bind-mounted (HMR) │ │
+│   │   ├─ npm run seed         │    │  volume: movie-db-data    │ │  volume: frontend-node-  │ │
+│   │   └─ npm start (index.js) │    │                           │ │           modules        │ │
+│   │  Express app on :3000     │    └───────────────────────────┘ └─────────────────────────┘ │
+│   │   ├─ /api/movies/*  API   │                                  │                          │
+│   │   └─ /public  static HTML │                                  │                          │
+│   └───────────────────────────┘                                  │                          │
+│        │  TCP 5432 (internal network) ───────────────────────────┘                          │
+└──────────────────────────────────────────────────────────────────────────────────────────────┘
+        │                                                            │
+        │ HTTP :3000 (browser/curl)                                  │ HTTP :5173 (browser)
+        ▼                                                            ▼
+   Browser → http://localhost:3000/  (API + legacy HTML UI)   Browser → http://localhost:5173/  (React SPA)
 ```
 
 - API container waits for DB health, then runs migrations and seeds **idempotently**, then starts the Express server.
@@ -67,7 +65,11 @@ Repo: `https://github.com/AlfredoEspinosa/MoviePlatform.git` (branch `main`).
 | Testing framework | Jest | ^30.2.0 |
 | Dev auto-reload | Nodemon | ^3.1.10 (used by `npm run dev`) |
 | Frontend HTTP | Axios | loaded from CDN in HTML pages (not an npm dependency here) |
+| Frontend framework | React | 19 (new SPA in `frontend/`, migration in progress) |
+| Frontend build tool | Vite | 8 (scaffolded with `npm create vite@latest frontend -- --template react`) |
+| Frontend routing | react-router-dom | 7 (`<BrowserRouter>`, `<Routes>`, `<Link>`) |
 | Container runtime | Docker or Podman | compose orchestration (`podman-compose up --build`) |
+| Frontend container | node:22-alpine | Vite dev server (:5173) with `/api` proxy → `api:3000` |
 | CI | GitHub Actions | Node 22.x + Postgres 16 service container |
 
 The top-level root also contains a `node_modules/` folder (legacy; the real one lives under `movie-platform-rest-api/`).
@@ -111,7 +113,29 @@ IBM-NodeJS-Challenge/
     │   └── movies-list-post-requests.json  # 106 pre-made POST payloads
     ├── movies.test.js             # Jest + Supertest test (validation middleware)
     └── .gitignore
+    └── frontend/                      # React SPA (Vite) — replaces the HTML+Axios pages
+        ├── package.json               # react, react-dom, axios, react-router-dom + Vite tooling
+        ├── vite.config.js             # /api proxy → http://localhost:3000
+        ├── index.html                 # Vite entry HTML
+        ├── public/images/             # 0-5.png posters (kept, currently unused)
+        └── src/
+            ├── main.jsx               # ReactDOM entry, wraps <App/> in <BrowserRouter>
+            ├── App.jsx                # <Routes> only: "/" (list) and "/movie/:id" (detail) — no nav bar
+            ├── index.css              # design vars (--bg, --accent, …), toolbar, filters, filmstrip, movie-card
+            ├── api/
+            │   └── movies.js          # axios client: 7 functions (getMovies, getDropdownMovies, getMovie, createMovie, updateMovie, updateViews, deleteMovie)
+            ├── utils/
+            │   └── chunkArray.js      # splits array into rows of N (groups movie posters 2-per-row)
+            ├── assets/                # posters 0-7.jpeg (bundled at build time via import.meta.glob)
+            └── pages/
+                ├── MovieListPage.jsx  # debounced live filters + "Create New Movie" toolbar/form
+                ├── Movie.jsx          # editable form card; edit mode (Edit/Delete) OR create mode (Create/Cancel) via `isCreating`
+                ├── MoviePage.jsx      # route /movie/:id → fetch movie, render <Movie key={movie.id}/>
+                ├── MoviesStrip.jsx    # filmstrip: poster grid (2/row), import.meta.glob posters, navigate() on click
+                └── MovieDetailPage.jsx# ⚠️ leftover of an earlier step — no longer routed
 ```
+
+> ⚠️ `frontend/` and `.gitattributes` are currently **untracked** in git (working tree shows them as new files).
 
 > ⚠️ `database/movie_platform.sqlite3` is a leftover from the old SQLite implementation and is **ignored / not in use**. Do not build on it. The `.gitignore` files ignore both root and app `node_modules/` and the sqlite file.
 
@@ -127,10 +151,11 @@ IBM-NodeJS-Challenge/
 4. `npm run seed` → runs `database/seeds/seedMovies.js`.
 5. `npm start` → `node index.js` (Express server).
 
-`docker-compose.yml` (`services: db, api`):
+`docker-compose.yml` (`services: db, api, frontend`):
 
 - `db`: `postgres:16`, env `POSTGRES_USER/PASSWORD/DB = postgres/postgres/movie_platform`, port `5432:5432`, named volume `movie-db-data`, healthcheck `pg_isready`.
 - `api`: built from `./movie-platform-rest-api`, port `3000:3000`, env `DB_HOST=db`, `DB_PORT=5432`, `DB_USER/PASSWORD=postgres`, `DB_NAME=movie_platform`, `depends_on.db.condition: service_healthy`.
+- `frontend`: built from `./frontend` (Dockerfile runs the **Vite dev server**), port `5173:5173`, env `VITE_API_PROXY=http://api:3000` + `VITE_USE_POLLING=true`, bind-mounts `./frontend:/app` (live HMR) with a named `frontend-node-modules` volume so the container keeps its own `node_modules` (the host one is shadowed). `depends_on: api`.
 
 ---
 
@@ -205,14 +230,29 @@ Validation lives in `middleware/validationMiddleware.js` and returns 400 with `s
 
 ---
 
-## 8. Frontend (placeholder, to be replaced with React)
+## 8. Frontend (React SPA — migration in progress)
 
-- `public/load-all-movies.html`: search/filter form + "Create New Movie" button. Axios (CDN) does `GET /api/movies?...` and renders movie cards; create picks a **random index 1–100** from `movies-list-post-requests.json` (106 entries) and `POST`s it.
-- `public/single-movie.html`: dropdown populated from `/api/movies/dropdown-movies`; on select loads the movie, then supports **Update (PUT)**, **Increase Views (PATCH**, adds a random 0–999 to current views**), and **Delete (soft)**.
-- Both files hardcode `http://localhost:3000` as the API base.
-- `movies-list-post-requests.json` contains 106 full movie objects used as POST payloads.
+Two generations of frontend coexist right now:
 
-Desired evolution: replace this improvised HTML+Axios layer with a small **React** application (SPA) that talks to the same REST API.
+**Legacy (still served, to be removed):** `movie-platform-rest-api/public/` — plain HTML + Axios from CDN.
+- `load-all-movies.html`: search/filter form + "Create New Movie" button; create picks a random index 1–100 from `movies-list-post-requests.json` (106 entries) and POSTs it.
+- `single-movie.html`: dropdown from `/api/movies/dropdown-movies`; supports Update (PUT), Increase Views (PATCH, +random 0–999), and Delete (soft).
+- Both hardcode `http://localhost:3000` as the API base.
+
+**React SPA (current work):** `frontend/` — Vite + React 19 + react-router-dom 7 + axios.
+- Dev server `http://localhost:5173`, with Vite proxy `/api → http://localhost:3000` (no CORS issues; the SPA never talks directly to port 3000 in dev).
+- `vite.config.js` — proxy target configurable via `VITE_API_PROXY` env (default `http://localhost:3000` for host dev; compose sets `http://api:3000`); `server.host: true` and `VITE_USE_POLLING` for container HMR.
+- `src/api/movies.js` — axios client, one exported function per endpoint. It sends `main_actors` **as an array** on write (the backend controller joins it to a comma-string; the client must NOT join, that double-conversion caused a 500).
+- `src/pages/MovieListPage.jsx` — debounced **live search**: `useEffect` depends on `[filters]` and refetches 300ms after the user pauses typing (setTimeout + `ignore`/`clearTimeout` cleanup). No Search button. Has a "Create New Movie" toolbar button that mounts `<Movie isCreating …/>`.
+- `src/pages/Movie.jsx` — reusable editable form card with two modes via the `isCreating` prop: edit mode shows Edit/Delete (`updateMovie`/`deleteMovie`), create mode shows Create/Cancel (`createMovie` + `onDone`/`onCancel` callbacks). Edits `main_actors` as comma-string, splits/trims/filters into an array only when building the payload.
+- `src/pages/MoviesStrip.jsx` — filmstrip of poster cards (2 per row via `chunkArray(movies, 2)`); posters resolved at build time with `import.meta.glob("../assets/*.{png,jpeg,jpg,webp}")` (prefers `.jpeg`, falls back to `0.jpeg`); `navigate(/movie/${id})` on click.
+- `src/pages/MoviePage.jsx` — route `/movie/:id`: `useParams` + `getMovie`, renders `<Movie key={movie.id} movie={movie}/>` (the `key` remounts the form per movie so state resets on navigation).
+- `src/main.jsx` wraps `<App/>` in `<BrowserRouter>`; `App.jsx` has only `<Routes>` for `/` (list) and `/movie/:id` (detail).
+- ESLint (the Vite template's `eslint-plugin-react-hooks` v7 rules) is strict: **no synchronous setState in effects** → all data fetching uses the inline-async + `ignore` cleanup pattern, and UI resets live in event handlers. `npm run lint` must stay clean.
+
+Known frontend gotchas:
+- `main_actors` round-trips as a **string** from the API (e.g. `"John Carter, Maya Lin"`), must be split to array before POST/PUT; never join in the axios client.
+- The SPA has no production integration yet — Express still serves the old HTML; the next step is to serve the built `frontend/dist` from Express and retire the `.html` files.
 
 ---
 
@@ -254,10 +294,36 @@ npm scripts (`movie-platform-rest-api/package.json`):
 
 ## 11. Planned / desired improvements
 
-- **Replace the HTML+Axios frontend with a small React application** (user-stated priority).
+- **Serve the built React SPA from Express and retire the HTML+Axios pages** (replace the two `.html` files + their routes in `index.js`, and update the root endpoint menu JSON). This is the remaining step of the React migration.
+- The "Create New Movie" flow now exists in the SPA (toolbar button → `<Movie isCreating/>`), but it uses a blank form — the old UI's "random payload from `movies-list-post-requests.json`" convenience is not ported.
 - The root-level `node_modules/` is legacy and should be removable.
 - Remove/clean the stale SQLite artifacts (`database/movie_platform.sqlite3` and its gitignore entries).
 - Potential cleanups: unify `main_actors` handling (array vs comma-string), type corrections, adding DB-backed integration tests, and proper input validation for PATCH.
+
+---
+
+## 14. Dev log
+
+### 2026-08-10 — React SPA migration (scaffold → create flow)
+- Scaffolded `frontend/` with `npm create vite@latest frontend -- --template react` (React 19, Vite 8, ESLint), installed `axios` + `react-router-dom`; added Vite `/api` proxy → `http://localhost:3000` in `vite.config.js`.
+- Fixed `docker-entrypoint.sh` CRLF line endings (24 `\r\n` broke the container); added `.gitattributes` (`*.sh text eol=lf`) and ran `git add --renormalize .`. Stale podman containers were the other cause — fixed with `podman-compose down && podman-compose up -d --build`.
+- Built the SPA: `api/movies.js` client, `MovieListPage` (debounced live filters, 300ms), `MoviesStrip` (poster grid, 2/row), `MoviePage` (`/movie/:id`), `Movie` (editable form).
+- **Create flow (latest):** `Movie` gained an `isCreating` mode (blank form, Create/Cancel buttons → `createMovie`, `onDone`/`onCancel` callbacks); `MovieListPage` got a `.toolbar` "+ Create New Movie" button; `handleCreated` refreshes the list after a successful create.
+- Fixed `main_actors.join is not a function` (500) — root cause was a **double conversion**: the api client was joining the array AND the backend controller joins it again. Removed `.join(", ")` from `createMovie`/`updateMovie` in the client; verified live (string → 500, array → 200).
+- Styling in `index.css`: design vars + `.toolbar`, `.filters`, filmstrip, `.movie-card` form styles; posters `src/assets/0-7.jpeg` bundled via `import.meta.glob`.
+- `App.jsx` routes are now just `/` and `/movie/:id`; `MovieDetailPage.jsx` is no longer routed but still exists in `pages/`.
+- `npm run lint` and `npm run build` both pass.
+
+### 2026-08-10 — frontend service in docker-compose
+- Added `frontend/` as a third compose service (`db`, `api`, `frontend`): node:22-alpine image running the **Vite dev server** on :5173.
+- `frontend/Dockerfile` + `.dockerignore`; compose bind-mounts `./frontend:/app` with a `frontend-node-modules` named volume so container deps aren't shadowed by the host.
+- Made `vite.config.js` container-friendly: `server.host: true`, proxy target now `process.env.VITE_API_PROXY || "http://localhost:3000"`, and `VITE_USE_POLLING=true` (set in compose) enables polling-based HMR for Windows bind mounts.
+- Verified: `docker compose config` OK; image builds with podman; full stack up (`podman-compose up -d frontend`) — `http://localhost:5173/` returns 200 and the `/api` proxy reaches the api container (200).
+
+### Next session (Step 13+)
+1. Serve the built `frontend/dist` from Express (`express.static` + catch-all → `index.html`), retire `load-all-movies.html` / `single-movie.html` and their routes, update the root menu JSON in `index.js`.
+2. Decide whether to `.gitignore` `frontend/dist`.
+3. Commit `frontend/` + `.gitattributes` (currently untracked).
 
 ---
 
@@ -294,4 +360,4 @@ npm start        # or: npm run dev
 npm test         # unit tests (no DB needed)
 ```
 
-Verify: open `http://localhost:3000/` (API menu), `http://localhost:3000/load-all-movies`, `http://localhost:3000/single-movie`.
+Verify: open `http://localhost:3000/` (API menu), `http://localhost:3000/load-all-movies`, `http://localhost:3000/single-movie`, and `http://localhost:5173/` (React SPA).

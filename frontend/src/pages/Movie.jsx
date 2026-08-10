@@ -1,19 +1,37 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { updateMovie, deleteMovie } from "../api/movies";
+import { createMovie, updateMovie, deleteMovie } from "../api/movies";
 
-export default function Movie({ movie }) {
-  // Editable copy of the movie (API returns main_actors as a comma-string)
-  const [form, setForm] = useState({
-    title: movie.title,
-    release_year: movie.release_year,
-    genere: movie.genere,
-    synopsis: movie.synopsis,
-    country: movie.country,
-    views: movie.views,
-    directed_by: movie.directed_by,
-    main_actors: movie.main_actors,
-  });
+export default function Movie({
+  movie,
+  isCreating = false,
+  onDone,
+  onCancel,
+}) {
+  // Editable copy of the movie. In create mode we start from blank fields.
+  const [form, setForm] = useState(() =>
+    isCreating
+      ? {
+          title: "",
+          release_year: "",
+          genere: "",
+          synopsis: "",
+          country: "",
+          views: "",
+          directed_by: "",
+          main_actors: "",
+        }
+      : {
+          title: movie.title,
+          release_year: movie.release_year,
+          genere: movie.genere,
+          synopsis: movie.synopsis,
+          country: movie.country,
+          views: movie.views,
+          directed_by: movie.directed_by,
+          main_actors: movie.main_actors,
+        }
+  );
   const [message, setMessage] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -23,7 +41,7 @@ export default function Movie({ movie }) {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleUpdate = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
     setError(null);
@@ -36,10 +54,19 @@ export default function Movie({ movie }) {
         country: form.country,
         views: Number(form.views),
         directed_by: form.directed_by,
-        main_actors: form.main_actors.split(",").map((a) => a.trim()),
+        main_actors: form.main_actors
+          .split(",")
+          .map((a) => a.trim())
+          .filter((a) => a.length > 0),
       };
-      await updateMovie(movie.id, payload);
-      setMessage("Movie updated successfully");
+      if (isCreating) {
+        await createMovie(payload);
+        setMessage("Movie created successfully");
+        if (onDone) onDone();
+      } else {
+        await updateMovie(movie.id, payload);
+        setMessage("Movie updated successfully");
+      }
     } catch (err) {
       setError(err.response?.data?.error || err.message);
     }
@@ -57,9 +84,9 @@ export default function Movie({ movie }) {
   };
 
   return (
-    <form className="movie-card" onSubmit={handleUpdate}>
+    <form className="movie-card" onSubmit={handleSubmit}>
       <h2>
-        {form.title} ({form.release_year})
+        {isCreating ? "Create New Movie" : `${form.title} (${form.release_year})`}
       </h2>
 
       <label>Title</label>
@@ -87,10 +114,21 @@ export default function Movie({ movie }) {
       <textarea name="synopsis" value={form.synopsis} onChange={handleChange} rows="4" />
 
       <div className="buttons">
-        <button type="submit">Edit</button>
-        <button type="button" className="delete" onClick={handleDelete}>
-          Delete
-        </button>
+        {isCreating ? (
+          <>
+            <button type="submit">Create</button>
+            <button type="button" onClick={onCancel}>
+              Cancel
+            </button>
+          </>
+        ) : (
+          <>
+            <button type="submit">Edit</button>
+            <button type="button" className="delete" onClick={handleDelete}>
+              Delete
+            </button>
+          </>
+        )}
       </div>
 
       {message && <p className="success">{message}</p>}
