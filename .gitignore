@@ -1,3 +1,4 @@
 node_modules/
 podman-compose-logs/
 movie-platform-rest-api/database/movie_platform.sqlite3
+CONTEXT.MD
