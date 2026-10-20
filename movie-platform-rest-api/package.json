@@ -14,12 +14,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.3",
     "pg": "^8.22.0",
     "supertest": "^7.1.4"
   },
   "devDependencies": {
-    "jest": "^30.2.0",
-    "nodemon": "^3.1.10"
+    "jest": "^25.0.0",
+    "nodemon": "^1.14.10"
   }
 }
