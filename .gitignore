@@ -1,2 +1,3 @@
 podman-compose-logs/
 CONTEXT.MD
+.env
