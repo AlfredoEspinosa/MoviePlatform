@@ -64,7 +64,7 @@ const getAllMovies = async (req, res) => {
     return errorHandler(err, req, res);
   } finally {
     if (client) {
-      database.disconnect(client);
+      await database.disconnect(client);
     }
   }
 };
@@ -85,7 +85,7 @@ const getDropDownMovies = async (req, res) => {
     return errorHandler(err, req, res);
   } finally {
     if (client) {
-      database.disconnect(client);
+      await database.disconnect(client);
     }
   }
 };
@@ -112,7 +112,7 @@ const getMovie = async (req, res) => {
     return errorHandler(err, req, res);
   } finally {
     if (client) {
-      database.disconnect(client);
+      await database.disconnect(client);
     }
   }
 };
@@ -202,7 +202,7 @@ const updateMovie = async (req, res) => {
     return errorHandler(err, req, res);
   } finally {
     if (client) {
-      database.disconnect(client);
+      await database.disconnect(client);
     }
   }
 };
@@ -244,7 +244,7 @@ const createMovie = async (req, res) => {
     return errorHandler(err, req, res);
   } finally {
     if (client) {
-      database.disconnect(client);
+      await database.disconnect(client);
     }
   }
 };
@@ -266,7 +266,7 @@ const updateMovieViews = async (req, res) => {
     return errorHandler(err, req, res);
   } finally {
     if (client) {
-      database.disconnect(client);
+      await database.disconnect(client);
     }
   }
 };
@@ -287,7 +287,7 @@ const deleteMovie = async (req, res) => {
     return errorHandler(err, req, res);
   } finally {
     if (client) {
-      database.disconnect(client);
+      await database.disconnect(client);
     }
   }
 };
