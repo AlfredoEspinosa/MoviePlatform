@@ -18,9 +18,9 @@ mkdir -p podman-compose-logs
 podman-compose up -d --build
 
 # Redirect logs for each service into the directory
-podman-compose logs -f db > podman-compose-logs/db.log &
-podman-compose logs -f api > podman-compose-logs/api.log &
-podman-compose logs -f frontend > podman-compose-logs/frontend.log &
+podman-compose logs --timestamps -f db > podman-compose-logs/db.log &
+podman-compose logs --timestamps -f api > podman-compose-logs/api.log &
+podman-compose logs --timestamps -f frontend > podman-compose-logs/frontend.log &
 
 # Tail all logs together
 tail -f podman-compose-logs/db.log podman-compose-logs/api.log podman-compose-logs/frontend.log
