@@ -12,6 +12,21 @@ jobs:
     defaults:
       run:
         working-directory: ./movie-platform-rest-api
+    env:
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: movie_platform
+      JWT_SECRET: ci-access-secret
+      JWT_REFRESH_SECRET: ci-refresh-secret
+      JWT_EXPIRES_IN: 15m
+      JWT_REFRESH_EXPIRES_IN: 7d
+      BCRYPT_ROUNDS: 10
+      DEFAULT_USERNAME: admin
+      EMAIL: ci@example.com
+      PASSWORD: ci-password
+      ROLE: admin
 
     services:
       postgres:
@@ -44,9 +59,3 @@ jobs:
       - run: npm run migrate
       - run: npm run seed
       - run: npm test
-        env:
-          DB_HOST: localhost
-          DB_PORT: 5432
-          DB_USER: postgres
-          DB_PASSWORD: postgres
-          DB_NAME: movie_platform
