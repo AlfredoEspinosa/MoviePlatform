@@ -213,7 +213,7 @@ const createMovie = async (req, res) => {
     const {
       title,
       release_year,
-      genere,
+      genre,
       synopsis,
       country,
       views,
@@ -227,7 +227,7 @@ const createMovie = async (req, res) => {
       [
         title,
         release_year,
-        genere,
+        genre,
         synopsis,
         country,
         views,
