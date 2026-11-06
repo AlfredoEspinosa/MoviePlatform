@@ -24,7 +24,6 @@ describe("POST /movies", () => {
     const response = await request(app).post("/movies").send(newMovie);
 
     expect(response.statusCode).toBe(400);
-    console.log(response.body);
     expect(response.body).toEqual({
       success: false,
       error:
