@@ -1,3 +1,4 @@
 podman-compose-logs/
 CONTEXT.MD
 .env
+.env.test
