@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest tests",
     "start": "node index.js",
     "dev": "nodemon index.js",
     "migrate": "node database/migrations/createTables.js",
