@@ -8,6 +8,7 @@ const ALGORITHM = "HS256";
 const CLOCK_TOLERANCE_SECONDS = 5;
 
 const TOKEN_TYPE = { ACCESS: "access", REFRESH: "refresh" };
+const ROLES = new Set(["admin", "user"]);
 
 // using helper function to get environment variables values
 const accessSecret = () => helpers.getEnv("JWT_SECRET");
@@ -16,14 +17,17 @@ const accessTtl = () => helpers.getEnv("JWT_EXPIRES_IN");
 const refreshTtl = () => helpers.getEnv("JWT_REFRESH_EXPIRES_IN");
 
 function signAccessToken(id, role) {
-  if (id === undefined || id === null) {
+  if (id === undefined || id === null || String(id).trim().length <= 0) {
     throw new TypeError(`signAccessToken: id is required`);
   }
-  if (role === undefined || role === null) {
+  if (role === undefined || role === null || String(role).trim().length <= 0) {
     throw new TypeError(`signAccessToken: role is required`);
   }
   if (typeof role != "string") {
     throw new TypeError(`role must be a string`);
+  }
+  if (!ROLES.has(role)) {
+    throw new jwt.JsonWebTokenError(`${role} is not a valid role`);
   }
 
   const payload = {
@@ -45,7 +49,7 @@ function signRefreshToken(id, jti) {
   if (id === undefined || id === null) {
     throw new TypeError(`signRefreshToken: id is required`);
   }
-  if (jti === undefined || jti === null) {
+  if (jti === undefined || jti === null || String(jti).length <= 0) {
     throw new TypeError(`signRefreshToken: jti is required`);
   }
 
