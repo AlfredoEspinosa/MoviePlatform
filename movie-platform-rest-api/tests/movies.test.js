@@ -24,10 +24,16 @@ describe("POST /movies", () => {
     const response = await request(app).post("/movies").send(newMovie);
 
     expect(response.statusCode).toBe(400);
-    expect(response.body).toEqual({
-      success: false,
-      error:
-        'Bad Request - Invaild data:  Invalid genre, please choose one of the following list ["Drama","Action","Comedy","Fantasy","Romance","Horror","Western","Science fiction","Adventure","Documentary","Animation"]',
-    });
+    expect(response.body.success).toBe(false);
+    expect(response.body.errors).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          path: "genre",
+          location: "body",
+          value: "Historical Drama",
+          msg: expect.stringContaining("Invalid genre"),
+        }),
+      ]),
+    );
   });
 });
